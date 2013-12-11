@@ -5,6 +5,7 @@
 #include "CGFshader.h"
 #include "Object.h"
 #include "ObjectCompost.h"
+#include "Tabuleiro.h"
 
 class DemoScene : public CGFscene
 {
@@ -24,6 +25,7 @@ private:
 	ObjectCompost* knight;
 	ObjectCompost* prince;
 	ObjectCompost* duke;
+	Tabuleiro* tab;
 };
 
 #endif

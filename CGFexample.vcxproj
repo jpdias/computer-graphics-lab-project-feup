@@ -12,11 +12,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\DemoScene.cpp" />
+    <ClCompile Include="src\Rectangle.cpp" />
+    <ClCompile Include="src\Tabuleiro.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Object.cpp" />
     <ClCompile Include="src\ObjectCompost.cpp" />
+    <ClCompile Include="src\TPinterface.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\Rectangle.h" />
+    <ClInclude Include="include\Tabuleiro.h" />
+    <ClInclude Include="include\TPinterface.h" />
     <ClInclude Include="src\DemoScene.h" />
     <ClInclude Include="src\Object.h" />
     <ClInclude Include="src\ObjectCompost.h" />
@@ -50,8 +56,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>bin\</OutDir>
-    <LibraryPath>C:\Users\João Pedro Dias\Documents\Visual Studio 2010\Projects\LAIG_JOGO\assimp\lib\assimp_release-dll_win32;Debug;lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSdkDir)lib;$(FrameworkSDKDir)\lib</LibraryPath>
-    <IncludePath>C:\Users\João Pedro Dias\Documents\Visual Studio 2010\Projects\LAIG_JOGO\assimp\include;include\CGF;include;$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSdkDir)include;$(FrameworkSDKDir)\include</IncludePath>
+    <LibraryPath>assimp\lib\assimp_release-dll_win32;Debug;lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSdkDir)lib;$(FrameworkSDKDir)\lib</LibraryPath>
+    <IncludePath>assimp\include;include\CGF;include;$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSdkDir)include;$(FrameworkSDKDir)\include</IncludePath>
     <IntDir>..\buildtemp\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
