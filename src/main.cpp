@@ -1,8 +1,3 @@
-/* 
- * G0_Base: projeto inicial de CGra
- * 
- */
-
 #include <iostream>
 #include <exception>
 
@@ -27,6 +22,7 @@ int main(int argc, char* argv[]) {
 	}
 	catch(GLexception& ex) {
 		cout << "Error: " << ex.what();
+	
 		return -1;
 	}
 	catch(exception& ex) {

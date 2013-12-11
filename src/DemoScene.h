@@ -3,6 +3,8 @@
 
 #include "CGFscene.h"
 #include "CGFshader.h"
+#include "Object.h"
+#include "ObjectCompost.h"
 
 class DemoScene : public CGFscene
 {
@@ -13,10 +15,15 @@ public:
 	~DemoScene();
 private:
 	CGFlight* light0;
-	CGFobject* obj;
-	CGFappearance* materialAppearance;
-	CGFappearance* textureAppearance;
-	CGFshader* shader;
+	Object* ark;
+	Object* king;
+	Object* tower;
+	Object* seargent;
+	Object* squire;
+	Object* pike;
+	ObjectCompost* knight;
+	ObjectCompost* prince;
+	ObjectCompost* duke;
 };
 
 #endif

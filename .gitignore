@@ -2,3 +2,5 @@
 *.sdf
 Debug*/
 
+bin/LAIG.pdb
+CGFexample.opensdf
