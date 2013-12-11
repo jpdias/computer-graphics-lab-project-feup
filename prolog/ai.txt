@@ -1,0 +1,148 @@
+count([],0).
+count([H|T],N) :- count(T,N1) , N is N1+1.
+
+AI:-
+              menuChooseMapAI(T, Map),
+			  menuStrategiesAI(Map, T, T2),
+			  menuStrategies(b, Map, T2, T3),
+			  gameplay(T3).
+
+	
+	choosePiecetomove([PL-NL|Rest],P-N,1):-
+			P=PL,N=NL.
+	choosePiecetomove([H|Rest],P-N,RP):-
+			choosePiecetomove(Rest,P-N,RP).
+								
+	
+	turnAI(Turn,T,T2,Pice,PT):-
+					count(PT,NumberL),
+					Sum is NumberL+1,
+					random(1,Sum,RP),
+					choosePiecetomove(PT,P-N,RP),
+					bestMove(T,P-N,Turn,1,Li	st),
+					makeDecision(T,P-N,Turn,List,0-0-0-0,[DirD-XD-YD-ScoreD]),
+					move(T,XD,YD,Turn,P,N,T2).
+					
+					
+					
+	maxSpaces([PL-NL-_-DL-HL|Rest],P-N,D-H)
+			PL=\=P,NL=\=N,maxSpaces(Rest,P-N,D-H).
+	maxSpaces([PL-NL-_-DL-HL|Rest],P-N,D-H)
+			PL=:=P,NL=:=N,D=DL,H=HL.
+
+	findScore(T,Turn,X-Y,Score)
+			find(T, T-E-_-_, X1-Y1),
+			((E=\=Turn,E=\=v,Score=2);(Score=1)).
+				
+				
+	movesList(T,Dir,P-N,1,List,Turn):-
+		pieceList(PI),
+		maxSpaces(PI,P-N,D-H).
+		Hnew is H+1,
+		Dnew is D+1,
+		(((Dir=:=2;Dir=:=4;Dir=:=5;Dir=:=7),
+				Spaces<Hnew,
+				((verifyMove(T,P,X1-Y1,Dir,Spaces,X-Y),SpacesN is Spaces+1,findScore(T,Turn,X-Y,Score),append(List,[Dir-X-Y-Score],List2),movesList(T,Dir,P-N,1,List2,Turn))
+				;
+				(SpacesN is Spaces+1,movesList(T,Dir,P-N,1,List,Turn))))
+			;
+		 ((Dir=:=1;Dir=:=3;Dir=:=6;Dir=:=8),
+				Spaces<Dnew,
+				((verifyMove(T,P,X1-Y1,Dir,Spaces,X-Y),SpacesN is Spaces+1,findScore(T,Turn,X-Y,Score),append(List,[Dir-X-Y-Score],List2),movesList(T,Dir,P-N,1,List2,Turn))
+				;
+				(SpacesN is Spaces+1,movesList(T,Dir,P-N,1,List,Turn)))
+				)
+			;
+			true).
+			
+		
+	
+	bestMove(_,_,_-_,_,9,_).
+	bestMove(T,P-N,Turn,Dir,List):-
+		find(T, _-Turn-P-N, X1-Y1),
+		movesList(T,Dir,P-N,1,List,Turn),
+		NewDir is Dir+1,
+		bestMove(T,P-N,Turn,NewDir,List).
+		
+		
+	makeDecision(T,P-N,Turn,[Dir-X-Y-Score|Rest],DirD-XD-YD-ScoreD,[DirD-XD-YD-ScoreD]):-
+		(
+		(ScoreD<Score,((Rest\=[],makeDecision(T,P-N,Turn,Rest,Dir-X-Y-Score,[Dir-X-Y-Score]));(true)))
+		;
+		((Rest\=[],makeDecision(T,P-N,Turn,Rest,DirD-XD-YD-ScoreD,[DirD-XD-YD-ScoreD]));(true))
+		)
+	
+		
+							
+
+							
+			  
+	gameplayHWithAI(T):-
+		availablePieces(a, T, PA),
+        gameplayAI(T, NT, a, PA),                
+        availablePieces(b, NT, PB),
+        gameplay(NT, NT2, b, PB),
+        gameplayHWithAI(NT2).
+			  
+			  
+	gameplayAI(T,_, Turn,_):-
+        % Se a realeza foi morta
+        % o adeversário ganha
+        availablePieces(Turn, T, PT),
+        \+(member(k-1, PT)),
+        \+(member(d-1, PT)),
+        \+(member(p-1, PT)),!,
+        (
+                (Turn=b, write('Player A Wins'),nl);
+                (Turn=a, write('Player B Wins'),nl)
+        ),fail.
+	
+	gameplayAI(T,_, Turn,_):-
+        % Se o castelo foi ocupado pelo adeversário
+        % o adeversário ganha
+        find(T, [c-Turn]-E-_-_, _-_),
+        E \= v, E \= Turn, !,
+        (
+                (Turn=b, write('Player A Wins'),nl);
+                (Turn=a, write('Player B Wins'),nl)
+        ),fail.
+		
+	gameplayAI(T,NT, Turn,PT):-
+
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+	 menuChooseMapAI(Tab, Map):-
+        clearScreen,
+        write('Ai chose Classic Map'),nl,
+        write('########'),nl,
+        nl,
+        initBlankTab(T),
+        sizePTabH(H),
+		divideTab(T,H,T1,_),
+		mapClassicList(L),
+		putTerrainList(T1, L, T2),
+		reverse(T2, T3),
+		append(T2, T3, Tab),              
+        Map = 1.
+	 
+	 menuStrategiesAI(Map, T, Tab):-
+        clearScreen,
+        write('Ai chose Strategy A.'),
+        write('########'),nl,
+        nl,
+        C=1,
+        sizePTabH(H),
+        divideTab(T,H,T1,T2),
+        isClassicMap(Map),!,
+        positionClassicMapA(P),
+        placeOnMap(P, T, a, Tab).
