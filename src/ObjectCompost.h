@@ -20,6 +20,7 @@ private:
 	const aiScene* scene2;
 	Assimp::Importer importer;
 	Assimp::Importer importer1;
+	CGFappearance* apr;
 public:
 	ObjectCompost(string filename1,string filename2);
 	const aiScene* getScene();

@@ -16,6 +16,11 @@ public:
 	~DemoScene();
 private:
 	CGFlight* light0;
+	CGFlight* light1;
+	CGFlight* light2;
+	CGFlight* light3;
+	CGFlight* light4;
+	CGFlight* light5;
 	Object* ark;
 	Object* king;
 	Object* tower;

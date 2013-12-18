@@ -19,6 +19,7 @@ class Object{
 private:
 	const aiScene* scene;
 	Assimp::Importer importer;
+	CGFappearance* apr;
 public:
 	Object(string filename);
 	const aiScene* getScene();

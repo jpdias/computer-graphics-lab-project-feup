@@ -12,31 +12,41 @@ void DemoScene::init()
 	glEnable(GL_LIGHTING);
 
 	// Sets up some lighting parameters
-	glLightModelf(GL_LIGHT_MODEL_TWO_SIDE, GL_FALSE);
-	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, CGFlight::background_ambient);  // Define ambient light
+	glLightModelf(GL_LIGHT_MODEL_AMBIENT, GL_FALSE);
+	//glLightModelfv(GL_LIGHT_MODEL_AMBIENT);  // Define ambient light
 	glShadeModel(GL_SMOOTH);
 	glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
 	// Declares and enables a light
-	float light0_pos[4] = {0, 6.0, 0, 1.0};
+	float light0_pos[4] = {0, 40.0, 0, 0.0};
 	light0 = new CGFlight(GL_LIGHT0, light0_pos);
+	float light1_pos[4] = {-19, 40.0, -19, 0.0};
+	light1 = new CGFlight(GL_LIGHT1, light1_pos);
+	float light2_pos[4] = {19, 40.0, 19, 0.0};
+	light2 = new CGFlight(GL_LIGHT2, light2_pos);
+	float light3_pos[4] = {-19, 40.0, 19, 0.0};
+	light3 = new CGFlight(GL_LIGHT3, light3_pos);
+	float light4_pos[4] = {19, 40.0, -19, 0.0};
+	light4 = new CGFlight(GL_LIGHT4, light4_pos);
 	
 	light0->enable();
-
+	light1->enable();
+	light2->enable();
+	light3->enable();
+	light4->enable();
 	// Defines a default normal
 	glNormal3f(0,0,1);
 
-	ark = new Object("data/arrow.obj");
-	tower = new Object("data/tower.obj");
-	seargent = new Object("data/duke.obj");
-	knight = new ObjectCompost("data/knight.obj","data/horse.obj");
-	duke = new ObjectCompost("data/duke.obj","data/horse.obj");
-	prince = new ObjectCompost("data/prince.obj","data/horse.obj");
-	squire = new Object("data/prince.obj");
-	king = new Object("data/knight.obj");
-	pike = new Object("data/pike.obj");
-	tab = new Tabuleiro();
-
 	
+	ark = new Object("../data/arrow.obj");
+	tower = new Object("../data/tower.obj");
+	seargent = new Object("../data/duke.obj");
+	knight = new ObjectCompost("../data/knight.obj","../data/horse.obj");
+	duke = new ObjectCompost("../data/duke.obj","../data/horse.obj");
+	prince = new ObjectCompost("../data/prince.obj","../data/horse.obj");
+	squire = new Object("../data/prince.obj");
+	king = new Object("../data/knight.obj");
+	pike = new Object("../data/pike.obj");
+	tab=new Tabuleiro();
 
 	setUpdatePeriod(30);
 }
@@ -65,13 +75,40 @@ void DemoScene::display()
 	CGFscene::activeCamera->applyView();
 	
 	// Draw (and update) light
-	light0->draw();	
+	//light0->draw();	
+	light1->draw();	
+	light2->draw();	
+	light3->draw();	
+	light4->draw();	
 	
 	glPushMatrix();
-	glPushName(-1);	
+	glPushName(1);
+	glTranslated(-2.5,0,-2.5);
+	knight->draw();
 	
+	glPopMatrix();
+
+	glPushMatrix();
+	glPushName(2);
+	glTranslated(7.5,0,7.5);
+	duke->draw();
+
+	glPopMatrix();
+
+
+	glPushMatrix();
+	glPushName(3);
+	glTranslated(12.5,0,12.5);
 	ark->draw();
-	
+
+	glPopMatrix();
+
+
+	glPushMatrix();
+	glPushName(4);
+	glTranslated(12.5,0,-12.5);
+	pike->draw();
+
 	glPopMatrix();
 	glPushMatrix();
 	tab->draw();

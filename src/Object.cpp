@@ -1,7 +1,13 @@
 #include "Object.h"
 
 Object::Object(string filename){
-
+	apr = new CGFappearance("../data/w.jpg",1,1);
+	float sp[4] = {0.1, 0.1,0.1, 0.0};
+	float a[4] = {0.1, 0.1,0.1, 0.0};
+	float z[4] = {0.1, 0.1,0.1, 0.0};
+	apr->setSpecular(sp);
+	apr->setAmbient(a);
+	apr->setDiffuse(z);
 	scene = importer.ReadFile(filename,aiProcess_CalcTangentSpace|aiProcess_Triangulate|aiProcess_JoinIdenticalVertices|aiProcess_SortByPType);
 
 	if(!scene){
@@ -20,9 +26,9 @@ void Object::draw(){
 		return;
 	}
 
-	glTranslated(0,2.8,0);
-	glScalef(0.4,0.4,0.4);
-	glColor3f(0.8 ,0.2 ,0.0);
+	glTranslated(0,1.8,0);
+	glScalef(0.26,0.26,0.26);
+	apr->apply();
 	for(auto i = 0u; i < scene->mNumMeshes ; i++){
 		for (auto j = 0u; j < scene->mMeshes[i]->mNumFaces ; j++)
 		{

@@ -4,3 +4,17 @@ Debug*/
 
 bin/LAIG.pdb
 CGFexample.opensdf
+bin/LAIG.exe
+bin/LAIG.ilk
+bin/LAIG.pdb
+ipch/cgfexample-95633e25/laig-c19ab99.ipch
+ipch/cgfexample-b019c911/laig-c19ab99.ipch
+.gitignore
+bin/LAIG.exe
+bin/LAIG.ilk
+bin/LAIG.pdb
+ipch/cgfexample-b019c911/laig-c19ab99.ipch
+bin/LAIG.exe
+ipch/cgfexample-b019c911/laig-c19ab99.ipch
+bin/LAIG.pdb
+bin/LAIG.exe
