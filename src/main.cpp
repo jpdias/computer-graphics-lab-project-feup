@@ -19,6 +19,13 @@ int main(int argc, char* argv[]) {
 		app.setScene(new DemoScene());
 		app.setInterface(new CGFinterface());
 		app.setInterface(new TPinterface());
+
+		app.run();
+		app.init(&argc, argv);
+
+		app.setScene(new DemoScene());
+		app.setInterface(new CGFinterface());
+		app.setInterface(new TPinterface());
 		
 		app.run();
 	}
