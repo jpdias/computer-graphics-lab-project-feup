@@ -31,7 +31,7 @@ class Tabuleiro: public CGFobject {
 		Rectangle obj;
 
 		CGFappearance* wall;
-	Rectangle obj;
+//	Rectangle obj;
 	Rectangle cube;
 
 };

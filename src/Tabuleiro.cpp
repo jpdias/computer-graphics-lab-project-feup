@@ -9,7 +9,10 @@ Tabuleiro::Tabuleiro(){
 	obj.y1=-0.5;
 	obj.x2=0.5;
 	obj.y2=0.5;
-	
+	dirt=new CGFappearance("data/dirt.jpg",1,1);
+	rock=new CGFappearance("data/rock.jpg",1,1);
+	black = new CGFappearance("data/black.jpg",1,1);
+	white = new CGFappearance("data/white.jpg",1,1);
 
 	float sp[4] = {0.1, 0.1,0.1, 0};
 	float a[4] = {0.8, 0.8,0.8, 0};
@@ -29,10 +32,7 @@ Tabuleiro::Tabuleiro(){
 	white->setAmbient(a);
 	white->setDiffuse(z);
 	rock->setShininess(0.7);
-	dirt=new CGFappearance("data/dirt.jpg",1,1);
-	rock=new CGFappearance("data/rock.jpg",1,1);
-	black = new CGFappearance("data/black.jpg",1,1);
-	white = new CGFappearance("data/white.jpg",1,1);
+	
 	wall = new CGFappearance();
 	wall->setTexture("data/wall.jpg");
 	wall->setTextureWrap(GL_REPEAT,GL_REPEAT);
