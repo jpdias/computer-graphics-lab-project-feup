@@ -52,6 +52,7 @@ void DemoScene::init()
 	squire = new Object("../data/prince.obj");
 	king = new Object("../data/knight.obj");
 	pike = new Object("../data/pike.obj");
+	peak = new Object("../data/peak.obj");
 	tab=new Tabuleiro();
 
 	setUpdatePeriod(30);
@@ -81,9 +82,6 @@ void DemoScene::display()
 	// Initialize Model-View matrix as identity (no transformation
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-	camera1->setX(0);
-	camera1->setY(25);
-	camera1->setZ(25);
 	// Apply transformations corresponding to the camera position relative to the origin
 	CGFscene::activeCamera->applyView();
 	//camera1->applyView();
@@ -93,18 +91,26 @@ void DemoScene::display()
 	light2->draw();	
 	light3->draw();	
 	light4->draw();	
-	
+	tab->drawbox(true);
 	glPushMatrix();
 	glPushName(1);
-	glTranslated(-2.5,0,-2.5);
-	knight->draw(1);
+	glTranslated(0,0,0);
+	//pike->draw(0);
+	peak->draw(1);
 	
 	glPopMatrix();
 
 	glPushMatrix();
 	glPushName(2);
-	glTranslated(7.5,0,7.5);
-	duke->draw(1);
+	glTranslated(5,0,5);
+	pike->draw(1);
+
+	glPopMatrix();
+
+	glPushMatrix();
+	glPushName(2);
+	glTranslated(15,0,15);
+	pike->draw(0);
 
 	glPopMatrix();
 
@@ -120,7 +126,7 @@ void DemoScene::display()
 	glPushMatrix();
 	glPushName(4);
 	glTranslated(12.5,0,-12.5);
-	pike->draw(0);
+	duke->draw(0);
 
 	glPopMatrix();
 	glPushMatrix();

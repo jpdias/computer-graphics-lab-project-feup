@@ -14,15 +14,30 @@ Tabuleiro::Tabuleiro(){
 	rock=new CGFappearance("../data/rock.jpg",1,1);
 	black = new CGFappearance("../data/black.jpg",1,1);
 	white = new CGFappearance("../data/white.jpg",1,1);
+	wall = new CGFappearance();
+	wall->setTexture("../data/wall.jpg");
+	wall->setTextureWrap(GL_REPEAT,GL_REPEAT);
 }
 
+void Tabuleiro::drawbox(bool text1){
+}
 void Tabuleiro::draw(int text1){
+
+	glPushMatrix();
+	wall->apply();
+	glTranslatef(0,-5.1,0);
+	glScaled(140,10,140);
+	
+	glutSolidCube(1);
+
+	glPopMatrix();
+
 	obj.x1=-0.5;
 	obj.y1=-0.5;
 	obj.x2=0.5;
 	obj.y2=0.5;
 	glPushMatrix();
-	glTranslatef(27.5, 0, -27.5);
+	glTranslatef(55, 0, -55);
 	glRotatef(90,0,0,1);
 	glScaled(5,5,5);
 	float sp[4] = {0.1, 0.1,0.1, 0};
