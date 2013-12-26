@@ -43,6 +43,7 @@ void DemoScene::init()
 	 camera1 = new CGFcamera();
 	 camera2 = new CGFcamera();
 	
+
 	/*ark = new Object("data/arrow.obj");
 	tower = new Object("data/tower.obj");
 	seargent = new Object("data/duke.obj");
@@ -52,6 +53,7 @@ void DemoScene::init()
 	squire = new Object("data/prince.obj");
 	king = new Object("data/knight.obj");
 	pike = new Object("data/pike.obj");*/
+
 	tab=new Tabuleiro();
 
 	setUpdatePeriod(30);
@@ -81,9 +83,6 @@ void DemoScene::display()
 	// Initialize Model-View matrix as identity (no transformation
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-	camera1->setX(0);
-	camera1->setY(25);
-	camera1->setZ(25);
 	// Apply transformations corresponding to the camera position relative to the origin
 	CGFscene::activeCamera->applyView();
 	//camera1->applyView();
@@ -93,45 +92,7 @@ void DemoScene::display()
 	light2->draw();	
 	light3->draw();	
 	light4->draw();	
-	
-	/*glPushMatrix();
-	glPushName(1);
-	glTranslated(-2.5,0,-2.5);
-	knight->draw(1);
-	glPopName();
-	glPopMatrix();
 
-	// POSIÇAO 1 1
-	glPushMatrix();
-	glPushName(20);
-	glTranslated(27.5,0,-27.5);
-	duke->draw(1);
-	glPopName();
-	glPopMatrix();
-
-	glPushMatrix();
-	glPushName(2);
-	glTranslated(7.5,0,7.5);
-	duke->draw(1);
-	glPopName();
-	glPopMatrix();
-
-
-	glPushMatrix();
-	glPushName(3);
-	glTranslated(12.5,0,12.5);
-	ark->draw(0);
-	glPopName();
-	glPopMatrix();
-
-
-	glPushMatrix();
-	glPushName(4);
-	glTranslated(12.5,0,-12.5);
-	pike->draw(0);
-	glPopName();
-	glPopMatrix();
-	*/
 	glPushMatrix();
 	tab->draw(texttab);
 	glPopMatrix();

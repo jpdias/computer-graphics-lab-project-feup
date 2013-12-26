@@ -7,6 +7,7 @@
 #include "CGFshader.h"
 #include "CGFaxis.h"
 #include "CGFapplication.h"
+
 #include "Peca.h"
 
 #define NUM_ROWS 24
@@ -17,6 +18,7 @@ class Tabuleiro: public CGFobject {
 	public:
 		int text1;
 		void draw(int text1);
+		void drawbox(bool text2);
 		Tabuleiro();
 		void initTab();
 		void placePieces();
@@ -27,6 +29,11 @@ class Tabuleiro: public CGFobject {
 		vector<vector<string> > board;
 		vector<Peca*> jog1Pecas,jog2Pecas;
 		Rectangle obj;
+
+		CGFappearance* wall;
+	Rectangle obj;
+	Rectangle cube;
+
 };
 
 #endif

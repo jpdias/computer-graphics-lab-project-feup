@@ -31,6 +31,7 @@ private:
 	Object* seargent;
 	Object* squire;
 	Object* pike;
+	Object* peak;
 	ObjectCompost* knight;
 	ObjectCompost* prince;
 	ObjectCompost* duke;*/
