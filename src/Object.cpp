@@ -1,8 +1,8 @@
 #include "Object.h"
 
 Object::Object(string filename){
-	apr = new CGFappearance("../data/w.jpg",1,1);
-	apr1 = new CGFappearance("../data/blue.png",1,1);
+	apr = new CGFappearance("data/w.jpg",1,1);
+	apr1 = new CGFappearance("data/blue.png",1,1);
 	float sp[4] = {0.1, 0.1,0.1, 0.0};
 	float a[4] = {0.1, 0.1,0.1, 0.0};
 	float z[4] = {0.1, 0.1,0.1, 0.0};
@@ -32,10 +32,16 @@ void Object::draw(bool player){
 
 	glTranslated(0,1.8,0);
 	glScalef(0.26,0.26,0.26);
-	if(player)
-	apr->apply();
-	else
+if(player){
+		glRotated(-90,0,1,0);
+		apr->apply();
+		
+	}
+
+	else{
+		glRotated(90,0,1,0);
 		apr1->apply();
+	}
 	for(auto i = 0u; i < scene->mNumMeshes ; i++){
 		for (auto j = 0u; j < scene->mMeshes[i]->mNumFaces ; j++)
 		{

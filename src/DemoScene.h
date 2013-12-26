@@ -3,8 +3,8 @@
 
 #include "CGFscene.h"
 #include "CGFshader.h"
-#include "Object.h"
-#include "ObjectCompost.h"
+//#include "Object.h"
+//#include "ObjectCompost.h"
 #include "Tabuleiro.h"
 
 class DemoScene : public CGFscene
@@ -25,7 +25,7 @@ private:
 	CGFlight* light3;
 	CGFlight* light4;
 	CGFlight* light5;
-	Object* ark;
+	/*Object* ark;
 	Object* king;
 	Object* tower;
 	Object* seargent;
@@ -33,7 +33,7 @@ private:
 	Object* pike;
 	ObjectCompost* knight;
 	ObjectCompost* prince;
-	ObjectCompost* duke;
+	ObjectCompost* duke;*/
 	Tabuleiro* tab;
 
 };

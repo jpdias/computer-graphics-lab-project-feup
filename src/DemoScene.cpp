@@ -43,15 +43,15 @@ void DemoScene::init()
 	 camera1 = new CGFcamera();
 	 camera2 = new CGFcamera();
 	
-	ark = new Object("../data/arrow.obj");
-	tower = new Object("../data/tower.obj");
-	seargent = new Object("../data/duke.obj");
-	knight = new ObjectCompost("../data/knight.obj","../data/horse.obj");
-	duke = new ObjectCompost("../data/duke.obj","../data/horse.obj");
-	prince = new ObjectCompost("../data/prince.obj","../data/horse.obj");
-	squire = new Object("../data/prince.obj");
-	king = new Object("../data/knight.obj");
-	pike = new Object("../data/pike.obj");
+	/*ark = new Object("data/arrow.obj");
+	tower = new Object("data/tower.obj");
+	seargent = new Object("data/duke.obj");
+	knight = new ObjectCompost("data/knight.obj","data/horse.obj");
+	duke = new ObjectCompost("data/duke.obj","data/horse.obj");
+	prince = new ObjectCompost("data/prince.obj","data/horse.obj");
+	squire = new Object("data/prince.obj");
+	king = new Object("data/knight.obj");
+	pike = new Object("data/pike.obj");*/
 	tab=new Tabuleiro();
 
 	setUpdatePeriod(30);
@@ -94,18 +94,26 @@ void DemoScene::display()
 	light3->draw();	
 	light4->draw();	
 	
-	glPushMatrix();
+	/*glPushMatrix();
 	glPushName(1);
 	glTranslated(-2.5,0,-2.5);
 	knight->draw(1);
-	
+	glPopName();
+	glPopMatrix();
+
+	// POSIÇAO 1 1
+	glPushMatrix();
+	glPushName(20);
+	glTranslated(27.5,0,-27.5);
+	duke->draw(1);
+	glPopName();
 	glPopMatrix();
 
 	glPushMatrix();
 	glPushName(2);
 	glTranslated(7.5,0,7.5);
 	duke->draw(1);
-
+	glPopName();
 	glPopMatrix();
 
 
@@ -113,7 +121,7 @@ void DemoScene::display()
 	glPushName(3);
 	glTranslated(12.5,0,12.5);
 	ark->draw(0);
-
+	glPopName();
 	glPopMatrix();
 
 
@@ -121,11 +129,15 @@ void DemoScene::display()
 	glPushName(4);
 	glTranslated(12.5,0,-12.5);
 	pike->draw(0);
-
+	glPopName();
 	glPopMatrix();
+	*/
 	glPushMatrix();
 	tab->draw(texttab);
 	glPopMatrix();
+
+
+
 
 
 	glutSwapBuffers();

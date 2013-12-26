@@ -1,14 +1,16 @@
 #ifndef TABULEIRO_H
 #define TABULEIRO_H
 
-#include "CGFobject.h"
+
 #include "Rectangle.h"
 #include "CGFscene.h"
 #include "CGFshader.h"
 #include "CGFaxis.h"
 #include "CGFapplication.h"
-#define NUM_ROWS 12
-#define NUM_COLS 12
+#include "Peca.h"
+
+#define NUM_ROWS 24
+#define NUM_COLS 24
 
 class Tabuleiro: public CGFobject {
 
@@ -16,11 +18,15 @@ class Tabuleiro: public CGFobject {
 		int text1;
 		void draw(int text1);
 		Tabuleiro();
+		void initTab();
+		void placePieces();
 		CGFappearance* dirt;
 		CGFappearance* rock;
 		CGFappearance* black;
 		CGFappearance* white;
-	Rectangle obj;
+		vector<vector<string> > board;
+		vector<Peca*> jog1Pecas,jog2Pecas;
+		Rectangle obj;
 };
 
 #endif
