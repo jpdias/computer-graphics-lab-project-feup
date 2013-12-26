@@ -8,6 +8,8 @@
 
 void DemoScene::init() 
 {
+	  wire=false;
+	  texttab=true;
 	// Enables lighting computations
 	glEnable(GL_LIGHTING);
 
@@ -15,7 +17,10 @@ void DemoScene::init()
 	glLightModelf(GL_LIGHT_MODEL_AMBIENT, GL_FALSE);
 	//glLightModelfv(GL_LIGHT_MODEL_AMBIENT);  // Define ambient light
 	glShadeModel(GL_SMOOTH);
-	glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
+	if(wire)
+		glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
+	else 
+		glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
 	// Declares and enables a light
 	float light0_pos[4] = {0, 40.0, 0, 0.0};
 	light0 = new CGFlight(GL_LIGHT0, light0_pos);
@@ -35,7 +40,8 @@ void DemoScene::init()
 	light4->enable();
 	// Defines a default normal
 	glNormal3f(0,0,1);
-
+	 camera1 = new CGFcamera();
+	 camera2 = new CGFcamera();
 	
 	ark = new Object("../data/arrow.obj");
 	tower = new Object("../data/tower.obj");
@@ -51,6 +57,7 @@ void DemoScene::init()
 	setUpdatePeriod(30);
 }
 
+
 void DemoScene::update(unsigned long t)
 {
 	/*shader->bind();
@@ -62,6 +69,10 @@ void DemoScene::update(unsigned long t)
 void DemoScene::display() 
 {
 	
+	if(wire)
+		glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
+	else 
+		glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
 	// ---- BEGIN Background, camera and axis setup
 	
 	// Clear image and depth buffer everytime we update the scene
@@ -70,10 +81,12 @@ void DemoScene::display()
 	// Initialize Model-View matrix as identity (no transformation
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-
+	camera1->setX(0);
+	camera1->setY(25);
+	camera1->setZ(25);
 	// Apply transformations corresponding to the camera position relative to the origin
 	CGFscene::activeCamera->applyView();
-	
+	//camera1->applyView();
 	// Draw (and update) light
 	//light0->draw();	
 	light1->draw();	
@@ -84,14 +97,14 @@ void DemoScene::display()
 	glPushMatrix();
 	glPushName(1);
 	glTranslated(-2.5,0,-2.5);
-	knight->draw();
+	knight->draw(1);
 	
 	glPopMatrix();
 
 	glPushMatrix();
 	glPushName(2);
 	glTranslated(7.5,0,7.5);
-	duke->draw();
+	duke->draw(1);
 
 	glPopMatrix();
 
@@ -99,7 +112,7 @@ void DemoScene::display()
 	glPushMatrix();
 	glPushName(3);
 	glTranslated(12.5,0,12.5);
-	ark->draw();
+	ark->draw(0);
 
 	glPopMatrix();
 
@@ -107,11 +120,11 @@ void DemoScene::display()
 	glPushMatrix();
 	glPushName(4);
 	glTranslated(12.5,0,-12.5);
-	pike->draw();
+	pike->draw(0);
 
 	glPopMatrix();
 	glPushMatrix();
-	tab->draw();
+	tab->draw(texttab);
 	glPopMatrix();
 
 
@@ -122,3 +135,6 @@ DemoScene::~DemoScene()
 {
 	delete(light0);
 }
+
+void DemoScene::toggleSomething(){
+};

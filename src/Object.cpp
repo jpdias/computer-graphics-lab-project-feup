@@ -2,12 +2,16 @@
 
 Object::Object(string filename){
 	apr = new CGFappearance("../data/w.jpg",1,1);
+	apr1 = new CGFappearance("../data/blue.png",1,1);
 	float sp[4] = {0.1, 0.1,0.1, 0.0};
 	float a[4] = {0.1, 0.1,0.1, 0.0};
 	float z[4] = {0.1, 0.1,0.1, 0.0};
 	apr->setSpecular(sp);
 	apr->setAmbient(a);
 	apr->setDiffuse(z);
+	apr1->setSpecular(sp);
+	apr1->setAmbient(a);
+	apr1->setDiffuse(z);
 	scene = importer.ReadFile(filename,aiProcess_CalcTangentSpace|aiProcess_Triangulate|aiProcess_JoinIdenticalVertices|aiProcess_SortByPType);
 
 	if(!scene){
@@ -16,7 +20,7 @@ Object::Object(string filename){
 
 }
 
-void Object::draw(){
+void Object::draw(bool player){
 
 	if(!scene)
 		return;
@@ -28,7 +32,10 @@ void Object::draw(){
 
 	glTranslated(0,1.8,0);
 	glScalef(0.26,0.26,0.26);
+	if(player)
 	apr->apply();
+	else
+		apr1->apply();
 	for(auto i = 0u; i < scene->mNumMeshes ; i++){
 		for (auto j = 0u; j < scene->mMeshes[i]->mNumFaces ; j++)
 		{

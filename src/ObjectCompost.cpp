@@ -2,12 +2,16 @@
 
 ObjectCompost::ObjectCompost(string filename1,string filename2){
 	apr = new CGFappearance("../data/w.jpg",1,1);
+	apr1 = new CGFappearance("../data/blue.png",1,1);
 	float sp[4] = {0.1, 0.1,0.1, 0.0};
 	float a[4] = {0.1, 0.1,0.1, 0.0};
 	float z[4] = {0.1, 0.1,0.1, 0.0};
 	apr->setSpecular(sp);
 	apr->setAmbient(a);
 	apr->setDiffuse(z);
+	apr1->setSpecular(sp);
+	apr1->setAmbient(a);
+	apr1->setDiffuse(z);
 	scene1 = importer.ReadFile(filename1,aiProcess_CalcTangentSpace|aiProcess_Triangulate|aiProcess_JoinIdenticalVertices|aiProcess_SortByPType);
 	scene2 = importer1.ReadFile(filename2,aiProcess_CalcTangentSpace|aiProcess_Triangulate|aiProcess_JoinIdenticalVertices|aiProcess_SortByPType);
 
@@ -20,7 +24,7 @@ ObjectCompost::ObjectCompost(string filename1,string filename2){
 
 }
 
-void ObjectCompost::draw(){
+void ObjectCompost::draw(bool player){
 	
 	if(!scene1)
 		return;
@@ -38,7 +42,11 @@ void ObjectCompost::draw(){
 	}
 	glPushMatrix();
 	glTranslated(0,2.5,0);
-	apr->apply();
+
+	if(player)
+		apr->apply();
+	else
+		apr1->apply();
 	glScalef(0.3,0.3,0.3);
 	for(auto i = 0u; i < scene1->mNumMeshes ; i++){
 		for (auto j = 0u; j < scene1->mMeshes[i]->mNumFaces ; j++)
@@ -62,7 +70,10 @@ void ObjectCompost::draw(){
 	}
 	glTranslated(0,-3,0);
 	glScalef(0.4,0.4,0.4);
+	if(player)
 		apr->apply();
+	else
+		apr1->apply();
 		for(auto i = 0u; i < scene2->mNumMeshes ; i++){
 		for (auto j = 0u; j < scene2->mMeshes[i]->mNumFaces ; j++)
 		{

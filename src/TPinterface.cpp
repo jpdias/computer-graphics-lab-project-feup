@@ -11,7 +11,23 @@ TPinterface::TPinterface()
 
 void TPinterface::initGUI()
 {
-
+	/*GLUI_Panel *varLuz= addPanel("Luzes", 2);
+	addCheckboxToPanel(varLuz, "Luz 1",&((DemoScene *) scene)->state1,NULL);
+	addColumn ();
+	GLUI_Panel *varClock= addPanel("Relogio", 3);
+	addStaticText("Relógio");
+	addButton ("Pause/Start",1);
+	addColumn ();*/
+	GLUI_Panel *text= addPanel("Wireframe");
+	GLUI_RadioGroup *group1=addRadioGroupToPanel(text,&((DemoScene *) scene)->wire);
+	addRadioButtonToGroup(group1,"Normal");
+	addRadioButtonToGroup(group1,"Wireframe");
+	addColumn();
+	GLUI_Panel *varwire= addPanel("Appearance");
+	GLUI_RadioGroup *group=addRadioGroupToPanel(varwire,&((DemoScene *) scene)->texttab);
+	addRadioButtonToGroup(group,"Standard");
+	addRadioButtonToGroup(group,"Rock");
+	addColumn();
 
 }
 void TPinterface::processGUI(GLUI_Control *ctrl)

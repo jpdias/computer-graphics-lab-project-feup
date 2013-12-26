@@ -21,9 +21,10 @@ private:
 	Assimp::Importer importer;
 	Assimp::Importer importer1;
 	CGFappearance* apr;
+	CGFappearance* apr1;
 public:
 	ObjectCompost(string filename1,string filename2);
 	const aiScene* getScene();
-	void draw();
+	void draw(bool player);
 	~ObjectCompost();
 };

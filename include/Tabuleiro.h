@@ -11,11 +11,15 @@
 #define NUM_COLS 12
 
 class Tabuleiro: public CGFobject {
+
 	public:
-		void draw();
+		int text1;
+		void draw(int text1);
 		Tabuleiro();
 		CGFappearance* dirt;
 		CGFappearance* rock;
+		CGFappearance* black;
+		CGFappearance* white;
 	Rectangle obj;
 };
 

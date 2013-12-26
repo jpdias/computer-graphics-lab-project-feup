@@ -3,16 +3,20 @@
 using std::cout;
 
 Tabuleiro::Tabuleiro(){
+	text1=true;
 	obj.x1=-0.5;
 	obj.y1=-0.5;
 	obj.x2=0.5;
 	obj.y2=0.5;
+	
+	
 	dirt=new CGFappearance("../data/dirt.jpg",1,1);
 	rock=new CGFappearance("../data/rock.jpg",1,1);
-	
+	black = new CGFappearance("../data/black.jpg",1,1);
+	white = new CGFappearance("../data/white.jpg",1,1);
 }
 
-void Tabuleiro::draw(){
+void Tabuleiro::draw(int text1){
 	obj.x1=-0.5;
 	obj.y1=-0.5;
 	obj.x2=0.5;
@@ -31,6 +35,15 @@ void Tabuleiro::draw(){
 	dirt->setSpecular(sp);
 	dirt->setAmbient(a);
 	dirt->setDiffuse(z);
+	
+
+	black->setSpecular(sp);
+	black->setAmbient(a);
+	black->setDiffuse(z);
+	black->setShininess(0.7);
+	white->setSpecular(sp);
+	white->setAmbient(a);
+	white->setDiffuse(z);
 	rock->setShininess(0.7);
 //	glPushName(-1);		// Load a default name
 
@@ -49,13 +62,25 @@ void Tabuleiro::draw(){
 			glPushName(c);
 			glPushMatrix();
 			if(c%2==0 && r%2==0)
+				if(text1)
 				rock->apply();
+				else
+					black->apply();
 			else if(c%2!=0 && r%2==0)
+				if(text1)
 				dirt->apply();
+				else
+					white->apply();
 			else if(c%2==0 && r%2!=0)
+				if(text1)
 				dirt->apply();
+				else
+					white->apply();
 			else
+				if(text1)
 				rock->apply();
+				else
+					black->apply();
 			obj.draw();
 			
 			glPopMatrix();

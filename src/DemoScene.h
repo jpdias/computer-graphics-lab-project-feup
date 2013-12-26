@@ -14,6 +14,10 @@ public:
 	void display();
 	void update(unsigned long t);
 	~DemoScene();
+	int wire,texttab;
+	void toggleSomething();
+	CGFcamera* camera1;
+	CGFcamera* camera2;
 private:
 	CGFlight* light0;
 	CGFlight* light1;
@@ -31,6 +35,7 @@ private:
 	ObjectCompost* prince;
 	ObjectCompost* duke;
 	Tabuleiro* tab;
+
 };
 
 #endif

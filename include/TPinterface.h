@@ -3,7 +3,7 @@
 
 #include "CGFinterface.h"
 #include "DemoScene.h"
-
+#include "Tabuleiro.h"
 class TPinterface: public CGFinterface {
 	public:
 		TPinterface();
