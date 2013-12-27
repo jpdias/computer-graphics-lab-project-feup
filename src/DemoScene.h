@@ -19,7 +19,7 @@ public:
 	void display();
 	void update(unsigned long t);
 	~DemoScene();
-	int wire,texttab;
+	int wire,texttab,cams;
 	void toggleSomething();
 	Tabuleiro* tab;
 	char turn;

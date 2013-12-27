@@ -20,13 +20,23 @@ TPinterface::TPinterface()
 
 void TPinterface::initGUI()
 {
-	/*GLUI_Panel *varLuz= addPanel("Luzes", 2);
-	addCheckboxToPanel(varLuz, "Luz 1",&((DemoScene *) scene)->state1,NULL);
+	/*GLUI_Panel *varLuz= addPanel("Cameras", 2);
+	addCheckboxToPanel(varLuz, "Camera Jog1",&((DemoScene *) scene)->state1,NULL);
 	addColumn ();
 	GLUI_Panel *varClock= addPanel("Relogio", 3);
 	addStaticText("Relógio");
 	addButton ("Pause/Start",1);
 	addColumn ();*/
+	GLUI_Panel *text1= addPanel("Cameras");
+	GLUI_RadioGroup *group2=addRadioGroupToPanel(text1,&((DemoScene *) scene)->cams);
+	addRadioButtonToGroup(group2,"Top");
+	addRadioButtonToGroup(group2,"Standard");
+	addRadioButtonToGroup(group2,"Jog1");
+	addRadioButtonToGroup(group2,"Jog2");
+	
+	addColumn();
+
+
 	GLUI_Panel *text= addPanel("Wireframe");
 	GLUI_RadioGroup *group1=addRadioGroupToPanel(text,&((DemoScene *) scene)->wire);
 	addRadioButtonToGroup(group1,"Normal");

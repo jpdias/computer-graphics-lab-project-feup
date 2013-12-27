@@ -56,7 +56,7 @@ Tabuleiro::Tabuleiro(){
 	pike = new Object("data/pike.obj");
 	mapObjects["pi"] = pike;
 	mapObjects["m"] = new Object("data/peak.obj");
-	mapObjects["garden"] = new Object("data/peak.obj");
+	mapObjects["garden"] = new Object("data/tre.obj");
 	mapObjects["castle"] = new Object("data/tower.obj");
 
 	cout << "Initiating Tab" << endl;

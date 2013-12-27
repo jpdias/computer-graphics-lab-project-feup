@@ -40,8 +40,8 @@ void DemoScene::init()
 	// Defines a default normal
 	glNormal3f(0,0,1);
 	camera1 = new Perspective("um",0,110,45,120,50,0,0,0,0);
-	camera2 = new Perspective("um",0,110,-45,-120,50,0,0,0,0);
-	cameratop = new Perspective("um",0,100,90,0.1,165,0,0,0,0);
+	camera2 = new Perspective("dois",0,110,-45,-120,50,0,0,0,0);
+	cameratop = new Perspective("tres",0,100,90,0.1,165,0,0,0,0);
 /*
 	ark = new Object("../data/arrow.obj");
 	tower = new Object("../data/tower.obj");
@@ -85,8 +85,17 @@ void DemoScene::display()
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	// Apply transformations corresponding to the camera position relative to the origin
-	//CGFscene::activeCamera->applyView();
-	cameratop->applyView();
+	//
+	if(cams==0)
+		cameratop->applyView();
+	else if (cams==1)
+		CGFscene::activeCamera->applyView();
+	else if (cams==2)
+		camera1->applyView();
+	else if (cams == 3)
+		camera2->applyView();
+	else
+		CGFscene::activeCamera->applyView();
 	// Draw (and update) light
 	//light0->draw();	
 	light1->draw();	
