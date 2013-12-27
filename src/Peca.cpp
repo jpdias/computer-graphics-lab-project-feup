@@ -30,7 +30,7 @@ Peca::Peca(int y,int x,string type,char team){
 		piece = new Object("data/knight.obj");
 	
 	else if(type.compare("garden")==0)
-	piece = new Object("data/peak.obj");
+	piece = new Object("data/tre.obj");
 	else if(type.compare("m")==0)
 	piece = new Object("data/peak.obj");
 	
