@@ -1,6 +1,6 @@
 #include "Peca.h"
 
-Peca::Peca(int num,int y,int x,string type,char team,map<string,Object*> mapObjects){
+Peca::Peca(double num,double y,double x,string type,char team,map<string,Object*> mapObjects){
 	this->x=x;
 	this->y=y;
 	this->type=type;
@@ -58,10 +58,12 @@ void Peca::draw(){
 
 }
 
-void Peca::setX(int x){
+void Peca::setX(double x){
 	this->x=x;
 }
 
-void Peca::setY(int y){
+void Peca::setY(double y){
 	this->y=y;
 }
+
+

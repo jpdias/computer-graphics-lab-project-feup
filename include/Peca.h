@@ -10,17 +10,18 @@
 class Peca: public CGFobject {
 
 	public:
-		int x;
-		int y;
+		double x;
+		double y;
 		string type;
 		bool c,isCastle;
 		char team;
 		int num;
-		Peca(int num,int x,int y,string type,char team,map<string,Object*> mapObjects);
+		Peca(double num,double x,double y,string type,char team,map<string,Object*> mapObjects);
 		void draw();
+		
 		Object *piece;
-		void setX(int x);
-		void setY(int y);
+		void setX(double x);
+		void setY(double y);
 };
 
 #endif

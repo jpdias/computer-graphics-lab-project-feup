@@ -30,6 +30,10 @@ class Tabuleiro: public CGFobject {
 		vector<Peca*> jog1Pecas,jog2Pecas,tabPecas;
 		Rectangle obj;
 
+
+		void move(int x1, int y1, int x2, int y2, Peca * obj);
+		
+		
 		CGFappearance* wall;
 //	Rectangle obj;
 	Rectangle cube;

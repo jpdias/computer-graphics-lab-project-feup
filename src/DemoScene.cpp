@@ -42,6 +42,7 @@ void DemoScene::init()
 	camera1 = new Perspective("um",0,110,45,120,50,0,0,0,0);
 	camera2 = new Perspective("dois",0,110,-45,-120,50,0,0,0,0);
 	cameratop = new Perspective("tres",0,100,90,0.1,165,0,0,0,0);
+
 /*
 	ark = new Object("../data/arrow.obj");
 	tower = new Object("../data/tower.obj");

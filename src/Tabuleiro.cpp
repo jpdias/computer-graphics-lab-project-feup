@@ -305,3 +305,19 @@ void Tabuleiro::placePieces(){
 
 }
 }
+
+
+void Tabuleiro::move( int x1, int y1, int x2, int y2, Peca* obj)
+{	int x=x1;
+	int y=y1;
+	double stepx = x1/5;
+	double stepy = y2/5;
+	while(x<=x2){
+		x1+=stepx;
+		y1+=stepy;
+		obj->setX(x1);
+		obj->setY(y1);
+		obj->draw();
+	}
+}
+
