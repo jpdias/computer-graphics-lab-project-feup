@@ -106,6 +106,7 @@ void DemoScene::display()
 
 
 	tab->draw(texttab);
+	clock.draw();
 
 
 

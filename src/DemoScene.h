@@ -7,7 +7,7 @@
 //#include "ObjectCompost.h"
 #include "Tabuleiro.h"
 #include "Camera.h"
-
+#include "Clock.h"
 
 class DemoScene : public CGFscene
 {
@@ -22,6 +22,8 @@ public:
 	int wire,texttab,cams;
 	void toggleSomething();
 	Tabuleiro* tab;
+	unsigned long _time;
+	Clock clock;
 	char turn;
 private:
 	CGFlight* light0;

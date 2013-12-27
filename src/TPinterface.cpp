@@ -191,6 +191,7 @@ void TPinterface::processHits (GLint hits, GLuint buffer[])
 					if(strcmp(str_socket,"true")==0){
 						((DemoScene *) scene)->tab->jog1Pecas.at(sel)->setX(x);
 						((DemoScene *) scene)->tab->jog1Pecas.at(sel)->setY(y);
+						//((DemoScene *) scene)->tab->move(((DemoScene *) scene)->tab->jog1Pecas.at(sel)->x,((DemoScene *) scene)->tab->jog1Pecas.at(sel)->y,x,y,((DemoScene *) scene)->tab->jog1Pecas.at(sel));
 					}
 				}
 			}
