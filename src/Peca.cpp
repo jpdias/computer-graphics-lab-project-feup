@@ -57,3 +57,11 @@ void Peca::draw(){
 	glPopMatrix();
 
 }
+
+void Peca::setX(int x){
+	this->x=x;
+}
+
+void Peca::setY(int y){
+	this->y=y;
+}

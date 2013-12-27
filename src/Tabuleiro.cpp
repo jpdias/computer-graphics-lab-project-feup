@@ -96,13 +96,13 @@ void Tabuleiro::draw(int text1){
 	{
 		glPushMatrix();
 		glTranslatef(0, r, 0);
-		glLoadName(r+1);
+		glLoadName(r);
 		for (int c=0; c < NUM_COLS; c++)
 		{
 			glPushMatrix();
 			glTranslatef(0,0,c);
 			glRotatef(90,0,1,0);
-			glPushName(c+1);
+			glPushName(c);
 			glPushMatrix();
 			if(c%2==0 && r%2==0)
 				if(text1)

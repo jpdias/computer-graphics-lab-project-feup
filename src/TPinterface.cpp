@@ -3,7 +3,9 @@
 // buffer to be used to store the hits during picking
 #define BUFSIZE 256
 
-
+bool selec;
+int sel;
+char player;
 using namespace std;
 
 GLuint selectBuf[BUFSIZE];
@@ -131,16 +133,24 @@ void TPinterface::processHits (GLint hits, GLuint buffer[])
 		printf("Picked ID's: ");
 		int size;
 		for (int i=0; i<nselected; i++){
-			printf("%d ",selected[i]);
-			if(i==0)
+			
+			if(i==0){
 				x=selected[i];
+				printf("%d ",x);
+			}
 			else{
 				y=selected[i];
+				printf("%d ",y);
+				if(!selec){
 				//if(((DemoScene *) scene)->turn=='a'){
 					size= ((DemoScene *) scene)->tab->jog1Pecas.size();
 					for(int j=0;j< size;j++){
-						if((((DemoScene *) scene)->tab->jog1Pecas.at(j)->x==x) && (((DemoScene *) scene)->tab->jog1Pecas.at(j)->y==y))
-							printf(" Player A Piece");
+						if((((DemoScene *) scene)->tab->jog1Pecas.at(j)->x==x) && (((DemoScene *) scene)->tab->jog1Pecas.at(j)->y==y)){
+							printf(" Player A Piece selected");
+							selec = true;
+							sel = j;
+							player = 'a';
+						}
 					}
 
 				//}
@@ -151,6 +161,13 @@ void TPinterface::processHits (GLint hits, GLuint buffer[])
 							printf(" Player B Piece");
 					}
 				//}
+				}
+				else
+				{
+					selec = false;
+					((DemoScene *) scene)->tab->jog1Pecas.at(sel)->setX(x);
+					((DemoScene *) scene)->tab->jog1Pecas.at(sel)->setY(y);
+				}
 			}
 
 		}

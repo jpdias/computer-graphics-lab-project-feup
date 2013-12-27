@@ -19,7 +19,8 @@ class Peca: public CGFobject {
 		Peca(int x,int y,string type,char team,map<string,Object*> mapObjects);
 		void draw();
 		Object *piece;
-		ObjectCompost *pieceCompost;
+		void setX(int x);
+		void setY(int y);
 };
 
 #endif
