@@ -43,7 +43,7 @@ void DemoScene::init()
 	 camera1 = new CGFcamera();
 	 camera2 = new CGFcamera();
 	
-
+/*
 	ark = new Object("../data/arrow.obj");
 	tower = new Object("../data/tower.obj");
 	seargent = new Object("../data/duke.obj");
@@ -53,8 +53,8 @@ void DemoScene::init()
 	squire = new Object("../data/prince.obj");
 	king = new Object("../data/knight.obj");
 	pike = new Object("../data/pike.obj");
-	peak = new Object("../data/peak.obj");
-	tree = new Object("../data/tre.obj");
+	peak = new Object("../data/peak.obj");*/
+	tree = new Object("data/tre.obj");
 
 	tab=new Tabuleiro();
 
@@ -96,7 +96,7 @@ void DemoScene::display()
 	light4->draw();	
 
 
-
+	tab->draw(true);
 
 
 

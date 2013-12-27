@@ -60,7 +60,7 @@ void Tabuleiro::draw(int text1){
 	
 	
 	glPushMatrix();
-	glTranslatef(27.5, 0, -27.5);
+	glTranslatef(55, 0, -55);
 	glRotatef(90,0,0,1);
 	glScaled(5,5,5);
 	
@@ -240,6 +240,7 @@ void Tabuleiro::placePieces(){
 			
 			//PARSE
 			//######[c-a]
+
 			if(board.at(i).at(j).substr(0, board.at(i).at(j).find(delim)).compare("[c")==0){
 				tmp=board.at(i).at(j).substr(board.at(i).at(j).find(delim));
 				if(tmp.at(1)=='a')
@@ -247,6 +248,14 @@ void Tabuleiro::placePieces(){
 				if(tmp.at(1)=='b')
 					jog2Pecas.push_back(new Peca(j,i,"castle",tmp.at(1)));
 			}
+			else if(board.at(i).at(j).substr(0, board.at(i).at(j).find(delim)).compare("[g")==0){
+				tmp=board.at(i).at(j).substr(board.at(i).at(j).find(delim));
+				if(tmp.at(1)=='a')
+					jog1Pecas.push_back(new Peca(j,i,"garden",tmp.at(1)));
+				if(tmp.at(1)=='b')
+					jog2Pecas.push_back(new Peca(j,i,"garden",tmp.at(1)));
+			}
+		
 			else{
 			type = board.at(i).at(j).substr(0, board.at(i).at(j).find(delim));
 			tmp=board.at(i).at(j).substr(board.at(i).at(j).find(delim)+1);
