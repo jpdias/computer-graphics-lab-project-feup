@@ -47,8 +47,8 @@ void TPinterface::initGUI()
 	addRadioButtonToGroup(group,"Standard");
 	addRadioButtonToGroup(group,"Rock");
 	addColumn();
-	//socketConnect();
-	//quit();
+	socketConnect();
+	quit();
 }
 void TPinterface::processGUI(GLUI_Control *ctrl)
 {	

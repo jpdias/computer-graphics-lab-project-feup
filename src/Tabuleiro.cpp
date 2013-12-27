@@ -260,16 +260,16 @@ void Tabuleiro::placePieces(){
 			if(board.at(i).at(j).substr(0, board.at(i).at(j).find(delim)).compare("[c")==0){
 				tmp=board.at(i).at(j).substr(board.at(i).at(j).find(delim));
 				if(tmp.at(1)=='a')
-					jog1Pecas.push_back(new Peca(j,i,"castle",tmp.at(1),mapObjects));
+					jog1Pecas.push_back(new Peca(0,j,i,"castle",tmp.at(1),mapObjects));
 				if(tmp.at(1)=='b')
-					jog2Pecas.push_back(new Peca(j,i,"castle",tmp.at(1),mapObjects));
+					jog2Pecas.push_back(new Peca(0,j,i,"castle",tmp.at(1),mapObjects));
 			}
 			else if(board.at(i).at(j).substr(0, board.at(i).at(j).find(delim)).compare("[g")==0){
 				tmp=board.at(i).at(j).substr(board.at(i).at(j).find(delim));
 				if(tmp.at(1)=='a')
-					jog1Pecas.push_back(new Peca(j,i,"garden",tmp.at(1),mapObjects));
+					jog1Pecas.push_back(new Peca(0,j,i,"garden",tmp.at(1),mapObjects));
 				if(tmp.at(1)=='b')
-					jog2Pecas.push_back(new Peca(j,i,"garden",tmp.at(1),mapObjects));
+					jog2Pecas.push_back(new Peca(0,j,i,"garden",tmp.at(1),mapObjects));
 			}
 		
 		
@@ -286,12 +286,12 @@ void Tabuleiro::placePieces(){
 			if ((piece.compare("ki")==0)||(piece.compare("p")==0)||(piece.compare("d")==0)||(piece.compare("se")==0)||(piece.compare("sq")==0)||(piece.compare("pi")==0)||(piece.compare("k")==0))	
 				{
 					if(team.compare("a")==0)
-						jog1Pecas.push_back(new Peca(j,i,piece,team.at(0),mapObjects));
+						jog1Pecas.push_back(new Peca(num,j,i,piece,team.at(0),mapObjects));
 					else if(team.compare("b")==0)
-						jog2Pecas.push_back(new Peca(j,i,piece,team.at(0),mapObjects));
+						jog2Pecas.push_back(new Peca(num,j,i,piece,team.at(0),mapObjects));
 			}
 			else if(type.compare("m")==0)
-				tabPecas.push_back(new Peca(j,i,type,'v',mapObjects));
+				tabPecas.push_back(new Peca(0,j,i,type,'v',mapObjects));
 
 			
 			//}

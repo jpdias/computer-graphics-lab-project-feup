@@ -1,12 +1,12 @@
 #include "Peca.h"
 
-Peca::Peca(int y,int x,string type,char team,map<string,Object*> mapObjects){
+Peca::Peca(int num,int y,int x,string type,char team,map<string,Object*> mapObjects){
 	this->x=x;
 	this->y=y;
 	this->type=type;
 	this->team=team;
 	isCastle=false;
-
+	this->num=num;
 	
 
 	piece = mapObjects[type];
