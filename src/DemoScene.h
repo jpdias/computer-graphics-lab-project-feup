@@ -6,18 +6,21 @@
 //#include "Object.h"
 //#include "ObjectCompost.h"
 #include "Tabuleiro.h"
+#include "Camera.h"
+
 
 class DemoScene : public CGFscene
 {
 public:
+	CGFcamera* camera1;
+	CGFcamera* camera2;
+	CGFcamera* cameratop;
 	void init();
 	void display();
 	void update(unsigned long t);
 	~DemoScene();
 	int wire,texttab;
 	void toggleSomething();
-	CGFcamera* camera1;
-	CGFcamera* camera2;
 	Tabuleiro* tab;
 	char turn;
 private:

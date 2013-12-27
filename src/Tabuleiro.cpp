@@ -76,7 +76,7 @@ void Tabuleiro::draw(int text1){
 		glPushMatrix();
 	wall->apply();
 	glTranslatef(0,-5.1,0);
-	glScaled(140,10,140);
+	glScaled(160,10,160);
 	
 	glutSolidCube(1);
 

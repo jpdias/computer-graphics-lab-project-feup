@@ -2,7 +2,6 @@
 #include "CGFaxis.h"
 #include "CGFapplication.h"
 #include <math.h>
-
 #include "CGFappearance.h"
 
 
@@ -40,9 +39,9 @@ void DemoScene::init()
 	light4->enable();
 	// Defines a default normal
 	glNormal3f(0,0,1);
-	 camera1 = new CGFcamera();
-	 camera2 = new CGFcamera();
-	
+	camera1 = new Perspective("um",0,110,45,120,50,0,0,0,0);
+	camera2 = new Perspective("um",0,110,-45,-120,50,0,0,0,0);
+	cameratop = new Perspective("um",0,100,90,0.1,165,0,0,0,0);
 /*
 	ark = new Object("../data/arrow.obj");
 	tower = new Object("../data/tower.obj");
@@ -86,8 +85,8 @@ void DemoScene::display()
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	// Apply transformations corresponding to the camera position relative to the origin
-	CGFscene::activeCamera->applyView();
-	//camera1->applyView();
+	//CGFscene::activeCamera->applyView();
+	cameratop->applyView();
 	// Draw (and update) light
 	//light0->draw();	
 	light1->draw();	
