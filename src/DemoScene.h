@@ -36,6 +36,7 @@ private:
 	ObjectCompost* prince;
 	ObjectCompost* duke;*/
 	Tabuleiro* tab;
+	Object* tree;
 
 };
 

@@ -44,15 +44,17 @@ void DemoScene::init()
 	 camera2 = new CGFcamera();
 	
 
-	/*ark = new Object("data/arrow.obj");
-	tower = new Object("data/tower.obj");
-	seargent = new Object("data/duke.obj");
-	knight = new ObjectCompost("data/knight.obj","data/horse.obj");
-	duke = new ObjectCompost("data/duke.obj","data/horse.obj");
-	prince = new ObjectCompost("data/prince.obj","data/horse.obj");
-	squire = new Object("data/prince.obj");
-	king = new Object("data/knight.obj");
-	pike = new Object("data/pike.obj");*/
+	ark = new Object("../data/arrow.obj");
+	tower = new Object("../data/tower.obj");
+	seargent = new Object("../data/duke.obj");
+	knight = new ObjectCompost("../data/knight.obj","../data/horse.obj");
+	duke = new ObjectCompost("../data/duke.obj","../data/horse.obj");
+	prince = new ObjectCompost("../data/prince.obj","../data/horse.obj");
+	squire = new Object("../data/prince.obj");
+	king = new Object("../data/knight.obj");
+	pike = new Object("../data/pike.obj");
+	peak = new Object("../data/peak.obj");
+	tree = new Object("../data/tre.obj");
 
 	tab=new Tabuleiro();
 
@@ -93,9 +95,6 @@ void DemoScene::display()
 	light3->draw();	
 	light4->draw();	
 
-	glPushMatrix();
-	tab->draw(texttab);
-	glPopMatrix();
 
 
 
