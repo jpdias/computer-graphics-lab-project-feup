@@ -1,5 +1,8 @@
 #include "TPinterface.h"
-#include <vector>
+
+
+
+
 // buffer to be used to store the hits during picking
 #define BUFSIZE 256
 
@@ -14,7 +17,6 @@ GLuint selectBuf[BUFSIZE];
 
 TPinterface::TPinterface()
 {
-	
 }
 
 
@@ -48,11 +50,11 @@ void TPinterface::initGUI()
 	addRadioButtonToGroup(group,"Rock");
 	addColumn();
 	socketConnect();
-	quit();
+	//quit();
 }
 void TPinterface::processGUI(GLUI_Control *ctrl)
 {	
-
+	
 }
 
 void TPinterface::processMouse(int button, int state, int x, int y) 
@@ -117,6 +119,7 @@ void TPinterface::performPicking(int x, int y)
 
 void TPinterface::processHits (GLint hits, GLuint buffer[]) 
 {
+	char str_socket[128];
 	GLuint *ptr = buffer;
 	GLuint mindepth = 0xFFFFFFFF;
 	GLuint *selected=NULL;
@@ -175,8 +178,16 @@ void TPinterface::processHits (GLint hits, GLuint buffer[])
 				else
 				{
 					selec = false;
-					((DemoScene *) scene)->tab->jog1Pecas.at(sel)->setX(x);
-					((DemoScene *) scene)->tab->jog1Pecas.at(sel)->setY(y);
+					fill( begin( str_socket ), end( str_socket ), 0 );
+					_snprintf(str_socket,128,"movepiece-%s-a-%d-5-1.",((DemoScene *) scene)->tab->jog1Pecas.at(sel)->type.c_str(),((DemoScene *) scene)->tab->jog1Pecas.at(sel)->num);
+					strcat(str_socket,"\n");
+					envia(str_socket,strlen(str_socket));
+					fill( begin( str_socket ), end( str_socket ), 0 );
+					recebe(str_socket);
+					if(strcmp(str_socket,"true")==0){
+						((DemoScene *) scene)->tab->jog1Pecas.at(sel)->setX(x);
+						((DemoScene *) scene)->tab->jog1Pecas.at(sel)->setY(y);
+					}
 				}
 			}
 
@@ -233,6 +244,10 @@ void TPinterface::envia(char *s, int len) {
 }
 void TPinterface::recebe(char *ans) {
 	int bytesRecv = SOCKET_ERROR;
+	char t[6]="true";
+	t[4]=13;
+	char f[7]="false";
+	f[5]=13;
 	int pos = 0;
 	while (true) {
 		recv(m_socket, &ans[pos], 1, 0);
@@ -241,7 +256,14 @@ void TPinterface::recebe(char *ans) {
 		pos++;
 	}
 	ans[pos] = 0;
-	
+	if(strcmp(ans,t)==0){
+		memset(&ans[0], 0, sizeof(ans));
+		strcpy(ans,"true");
+	}
+	else if(strcmp(ans,f)==0){
+		memset(&ans[0], 0, sizeof(ans));
+		strcpy(ans,"false");
+	}	
 }
 void TPinterface::quit() {
 	cout << "Asking prolog to quit" << endl;

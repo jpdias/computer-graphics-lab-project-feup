@@ -4,11 +4,12 @@
 #include "CGFinterface.h"
 #include "DemoScene.h"
 #include "Tabuleiro.h"
+#include "Peca.h"
 #include <winsock2.h>
+#include <stdio.h>
 #include <iostream>
 #include <string>
-#include "Peca.h"
-
+#include <vector>
 class TPinterface: public CGFinterface {
 	public:
 		TPinterface();
