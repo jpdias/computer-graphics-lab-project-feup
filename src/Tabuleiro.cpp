@@ -312,6 +312,8 @@ void Tabuleiro::move( int x1, int y1, int x2, int y2, Peca* obj)
 	int y=y1;
 	double stepx = x1/5;
 	double stepy = y2/5;
+	glPushMatrix();
+	glTranslated(0,10,0);
 	while(x<=x2){
 		x1+=stepx;
 		y1+=stepy;
@@ -319,5 +321,7 @@ void Tabuleiro::move( int x1, int y1, int x2, int y2, Peca* obj)
 		obj->setY(y1);
 		obj->draw();
 	}
+	glTranslated(0,-10,0);
+	glPopMatrix();
 }
 
