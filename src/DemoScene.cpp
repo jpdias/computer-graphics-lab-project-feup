@@ -96,7 +96,7 @@ void DemoScene::display()
 	light4->draw();	
 
 
-	tab->draw(true);
+	tab->draw(texttab);
 
 
 

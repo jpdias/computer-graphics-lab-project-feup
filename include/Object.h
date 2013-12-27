@@ -21,9 +21,10 @@ private:
 	Assimp::Importer importer;
 	CGFappearance* apr;
 	CGFappearance* apr1;
+	CGFappearance* mon;
 public:
 	Object(string filename);
 	const aiScene* getScene();
-	void draw(bool player);
+	void draw(int player);
 	~Object();
 };

@@ -272,10 +272,13 @@ void Tabuleiro::placePieces(){
 			//######
 			//if(team.compare("v")!=0){
 			if ((piece.compare("ki")==0)||(piece.compare("p")==0)||(piece.compare("d")==0)||(piece.compare("se")==0)||(piece.compare("sq")==0)||(piece.compare("pi")==0)||(piece.compare("k")==0))	
-			if(team.compare("a")==0)
+				{if(team.compare("a")==0)
 				jog1Pecas.push_back(new Peca(j,i,piece,team.at(0)));
 				else if(team.compare("b")==0)
 					jog2Pecas.push_back(new Peca(j,i,piece,team.at(0)));
+			}
+			else if(type.compare("m")==0)
+				tabPecas.push_back(new Peca(j,i,type,'v'));
 
 			}
 			//}

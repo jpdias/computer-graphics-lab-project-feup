@@ -81,6 +81,8 @@ void Peca::draw(){
 				pieceCompost->draw(0);
 			else
 				piece->draw(0);
+		else if(team=='v')
+			piece->draw(3);
 		glPopName();
 	glPopMatrix();
 
