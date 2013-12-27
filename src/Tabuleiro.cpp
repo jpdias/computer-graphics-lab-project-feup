@@ -36,9 +36,11 @@ Tabuleiro::Tabuleiro(){
 	wall = new CGFappearance();
 	wall->setTexture("data/wall.jpg");
 	wall->setTextureWrap(GL_REPEAT,GL_REPEAT);
-
+	cout << "Initiating Tab" << endl;
 	initTab();
+	cout << "Placing Pieces" << endl;
 	placePieces();
+	cout << "done" << endl;
 }
 
 void Tabuleiro::draw(int text1){
@@ -116,6 +118,8 @@ void Tabuleiro::draw(int text1){
 			jog1Pecas.at(i)->draw();
 		for(int i=0;i<jog2Pecas.size();i++)
 			jog2Pecas.at(i)->draw();
+		for(int i=0;i<tabPecas.size();i++)
+			tabPecas.at(i)->draw();
 }
 
 void Tabuleiro::initTab(){
@@ -256,6 +260,8 @@ void Tabuleiro::placePieces(){
 					jog2Pecas.push_back(new Peca(j,i,"garden",tmp.at(1)));
 			}
 		
+		
+
 			else{
 			type = board.at(i).at(j).substr(0, board.at(i).at(j).find(delim));
 			tmp=board.at(i).at(j).substr(board.at(i).at(j).find(delim)+1);

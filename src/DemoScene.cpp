@@ -54,7 +54,7 @@ void DemoScene::init()
 	king = new Object("../data/knight.obj");
 	pike = new Object("../data/pike.obj");
 	peak = new Object("../data/peak.obj");*/
-	tree = new Object("data/tre.obj");
+	//tree = new Object("data/tre.obj");
 
 	tab=new Tabuleiro();
 

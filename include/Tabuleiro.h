@@ -27,7 +27,7 @@ class Tabuleiro: public CGFobject {
 		CGFappearance* black;
 		CGFappearance* white;
 		vector<vector<string> > board;
-		vector<Peca*> jog1Pecas,jog2Pecas;
+		vector<Peca*> jog1Pecas,jog2Pecas,tabPecas;
 		Rectangle obj;
 
 		CGFappearance* wall;
