@@ -8,10 +8,15 @@
 % a usar o modulo especificado em 'modules/tab.pro'
 :- use_module(library(random)).
 :- use_module(library(clpfd)).
-:- use_module('modules/tab.pro').
-:- use_module('modules/validation.pro').
+:- use_module('tab.pro').
+:- use_module('validation.pro').
 
 user:runtime_entry(start) :- run.
+
+
+run2(FinalTab) :- chooseMap(1, Tab),
+chooseStrategy(1, a, 1, Tab, NewTab),
+chooseStrategy(1, b, 1, NewTab, FinalTab).
 
 run:- clearScreen, menuModeSelection.
 
