@@ -7,7 +7,7 @@
 #define BUFSIZE 256
 
 bool selec;
-int sel;
+int sel,oldx,oldy;
 char player;
 using namespace std;
 
@@ -162,6 +162,8 @@ void TPinterface::processHits (GLint hits, GLuint buffer[])
 							printf(" Player A Piece selected");
 							selec = true;
 							sel = j;
+							oldx=x;
+							oldy=y;
 							player = 'a';
 						}
 					}
@@ -177,9 +179,11 @@ void TPinterface::processHits (GLint hits, GLuint buffer[])
 				}
 				else
 				{
+					int space,direction=getDirection(x,y,oldx,oldy,&space);
+					printf("\nDIR:%d|SPACE:%d\n",direction,space);
 					selec = false;
 					fill( begin( str_socket ), end( str_socket ), 0 );
-					_snprintf(str_socket,128,"movepiece-%s-a-%d-5-1.",((DemoScene *) scene)->tab->jog1Pecas.at(sel)->type.c_str(),((DemoScene *) scene)->tab->jog1Pecas.at(sel)->num);
+					_snprintf(str_socket,128,"movepiece-%s-a-%d-%d-%d.",((DemoScene *) scene)->tab->jog1Pecas.at(sel)->type.c_str(),((DemoScene *) scene)->tab->jog1Pecas.at(sel)->num,direction,space);
 					strcat(str_socket,"\n");
 					envia(str_socket,strlen(str_socket));
 					fill( begin( str_socket ), end( str_socket ), 0 );
@@ -271,4 +275,41 @@ void TPinterface::quit() {
 	envia(buff, 6);
 	char ans[128];
 	recebe(ans);
+}
+
+int TPinterface::getDirection(int newy,int newx,int oldy,int oldx,int *space)
+{
+	int x_len=newx-oldx;
+	int y_len=newy-oldy;
+	
+	if(x_len!=0)
+		*space = abs(x_len);
+	else
+		*space = abs(y_len);
+	//Diagonals
+	if(abs(x_len)==abs(y_len))
+	{
+		if(newx<oldx && newy<oldy)
+			return 1;
+		else if(newx>oldx && newy<oldy)
+			return 3;
+		else if(newx>oldx && newy>oldy)
+			return 8;
+		else if(newx<oldx && newy>oldy)
+			return 6;
+	}
+	else if(x_len == 0 && y_len == 0)
+		return 0;
+	else
+	{
+		if(x_len>0 && y_len==0)
+			return 5;
+		else if(x_len<0 && y_len==0)
+			return 4;
+		else if(y_len<0 && x_len==0)
+			return 2;
+		else if(y_len>0 && x_len==0)
+			return 7;
+	}
+
 }

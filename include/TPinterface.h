@@ -10,6 +10,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <math.h>
 class TPinterface: public CGFinterface {
 	public:
 		TPinterface();
@@ -23,6 +24,7 @@ class TPinterface: public CGFinterface {
 		void envia(char *s, int len);
 		void recebe(char *ans);
 		void quit();
+		int getDirection(int newx,int newy, int oldx, int oldy,int *space);
 };
 
 
