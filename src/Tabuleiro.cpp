@@ -116,6 +116,7 @@ void Tabuleiro::draw(int text1){
 		
 		for(int i=0;i<jog1Pecas.size();i++)
 			jog1Pecas.at(i)->draw();
+		
 		for(int i=0;i<jog2Pecas.size();i++)
 			jog2Pecas.at(i)->draw();
 		for(int i=0;i<tabPecas.size();i++)

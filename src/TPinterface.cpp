@@ -1,5 +1,5 @@
 #include "TPinterface.h"
-
+#include <vector>
 // buffer to be used to store the hits during picking
 #define BUFSIZE 256
 
@@ -108,8 +108,7 @@ void TPinterface::processHits (GLint hits, GLuint buffer[])
 	GLuint *ptr = buffer;
 	GLuint mindepth = 0xFFFFFFFF;
 	GLuint *selected=NULL;
-	GLuint nselected;
-
+	GLuint nselected,x,y;
 	// iterate over the list of hits, and choosing the one closer to the viewer (lower depth)
 	for (int i=0;i<hits;i++) {
 		int num = *ptr; ptr++;
@@ -130,8 +129,31 @@ void TPinterface::processHits (GLint hits, GLuint buffer[])
 		// this should be replaced by code handling the picked object's ID's (stored in "selected"), 
 		// possibly invoking a method on the scene class and passing "selected" and "nselected"
 		printf("Picked ID's: ");
-		for (int i=0; i<nselected; i++)
+		int size;
+		for (int i=0; i<nselected; i++){
 			printf("%d ",selected[i]);
+			if(i==0)
+				x=selected[i];
+			else{
+				y=selected[i];
+				//if(((DemoScene *) scene)->turn=='a'){
+					size= ((DemoScene *) scene)->tab->jog1Pecas.size();
+					for(int j=0;j< size;j++){
+						if((((DemoScene *) scene)->tab->jog1Pecas.at(j)->x==x) && (((DemoScene *) scene)->tab->jog1Pecas.at(j)->y==y))
+							printf(" Player A Piece");
+					}
+
+				//}
+				//else if(((DemoScene *) scene)->turn=='b'){
+					size= ((DemoScene *) scene)->tab->jog2Pecas.size();
+					for(int j=0;j< size;j++){
+						if((((DemoScene *) scene)->tab->jog2Pecas.at(j)->x==x) && (((DemoScene *) scene)->tab->jog1Pecas.at(j)->y==y))
+							printf(" Player B Piece");
+					}
+				//}
+			}
+
+		}
 		printf("\n");
 	}
 	else

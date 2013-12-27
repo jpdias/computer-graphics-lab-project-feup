@@ -18,6 +18,8 @@ public:
 	void toggleSomething();
 	CGFcamera* camera1;
 	CGFcamera* camera2;
+	Tabuleiro* tab;
+	char turn;
 private:
 	CGFlight* light0;
 	CGFlight* light1;
@@ -35,7 +37,7 @@ private:
 	ObjectCompost* knight;
 	ObjectCompost* prince;
 	ObjectCompost* duke;*/
-	Tabuleiro* tab;
+	
 	Object* tree;
 
 };

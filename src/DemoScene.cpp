@@ -57,7 +57,7 @@ void DemoScene::init()
 	//tree = new Object("data/tre.obj");
 
 	tab=new Tabuleiro();
-
+	turn='a';
 	setUpdatePeriod(30);
 }
 

@@ -7,7 +7,7 @@
 #include <winsock2.h>
 #include <iostream>
 #include <string>
-
+#include "Peca.h"
 
 class TPinterface: public CGFinterface {
 	public:
