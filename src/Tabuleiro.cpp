@@ -36,6 +36,29 @@ Tabuleiro::Tabuleiro(){
 	wall = new CGFappearance();
 	wall->setTexture("data/wall.jpg");
 	wall->setTextureWrap(GL_REPEAT,GL_REPEAT);
+	
+	ark = new Object("data/arrow.obj");
+	mapObjects["ar"] = ark;
+	tower = new Object("data/tower.obj");
+	mapObjects["tur"] = tower;
+	seargent = new Object("data/duke.obj");
+	mapObjects["se"] = seargent;
+	knight = new Object("data/knight.obj","data/horse.obj");
+	mapObjects["ki"] = knight;
+	duke = new Object("data/duke.obj","data/horse.obj");
+	mapObjects["d"] = duke;
+	prince = new Object("data/prince.obj","data/horse.obj");
+	mapObjects["p"] = prince;
+	squire = new Object("data/prince.obj");
+	mapObjects["sq"] = squire;
+	king = new Object("data/knight.obj");
+	mapObjects["k"] = king;
+	pike = new Object("data/pike.obj");
+	mapObjects["pi"] = pike;
+	mapObjects["m"] = new Object("data/peak.obj");
+	mapObjects["garden"] = new Object("data/peak.obj");
+	mapObjects["castle"] = new Object("data/tower.obj");
+
 	cout << "Initiating Tab" << endl;
 	initTab();
 	cout << "Placing Pieces" << endl;
@@ -227,19 +250,7 @@ void Tabuleiro::placePieces(){
 	string type,team,piece,tmp;
 	int num;
 	string delim ="-";
-	/*
-	
-	ark = new Object("data/arrow.obj");
-	tower = new Object("data/tower.obj");
-	seargent = new Object("data/duke.obj");
-	knight = new ObjectCompost("data/knight.obj","data/horse.obj");
-	duke = new ObjectCompost("data/duke.obj","data/horse.obj");
-	prince = new ObjectCompost("data/prince.obj","data/horse.obj");
-	squire = new Object("data/prince.obj");
-	king = new Object("data/knight.obj");
-	pike = new Object("data/pike.obj");
 
-	*/
 	for(int i=0;i<board.size();i++){
 		for(int j=0;j<board.at(i).size();j++){
 			
@@ -249,16 +260,16 @@ void Tabuleiro::placePieces(){
 			if(board.at(i).at(j).substr(0, board.at(i).at(j).find(delim)).compare("[c")==0){
 				tmp=board.at(i).at(j).substr(board.at(i).at(j).find(delim));
 				if(tmp.at(1)=='a')
-					jog1Pecas.push_back(new Peca(j,i,"castle",tmp.at(1)));
+					jog1Pecas.push_back(new Peca(j,i,"castle",tmp.at(1),mapObjects));
 				if(tmp.at(1)=='b')
-					jog2Pecas.push_back(new Peca(j,i,"castle",tmp.at(1)));
+					jog2Pecas.push_back(new Peca(j,i,"castle",tmp.at(1),mapObjects));
 			}
 			else if(board.at(i).at(j).substr(0, board.at(i).at(j).find(delim)).compare("[g")==0){
 				tmp=board.at(i).at(j).substr(board.at(i).at(j).find(delim));
 				if(tmp.at(1)=='a')
-					jog1Pecas.push_back(new Peca(j,i,"garden",tmp.at(1)));
+					jog1Pecas.push_back(new Peca(j,i,"garden",tmp.at(1),mapObjects));
 				if(tmp.at(1)=='b')
-					jog2Pecas.push_back(new Peca(j,i,"garden",tmp.at(1)));
+					jog2Pecas.push_back(new Peca(j,i,"garden",tmp.at(1),mapObjects));
 			}
 		
 		
@@ -273,15 +284,16 @@ void Tabuleiro::placePieces(){
 			//######
 			//if(team.compare("v")!=0){
 			if ((piece.compare("ki")==0)||(piece.compare("p")==0)||(piece.compare("d")==0)||(piece.compare("se")==0)||(piece.compare("sq")==0)||(piece.compare("pi")==0)||(piece.compare("k")==0))	
-				{if(team.compare("a")==0)
-				jog1Pecas.push_back(new Peca(j,i,piece,team.at(0)));
-				else if(team.compare("b")==0)
-					jog2Pecas.push_back(new Peca(j,i,piece,team.at(0)));
+				{
+					if(team.compare("a")==0)
+						jog1Pecas.push_back(new Peca(j,i,piece,team.at(0),mapObjects));
+					else if(team.compare("b")==0)
+						jog2Pecas.push_back(new Peca(j,i,piece,team.at(0),mapObjects));
 			}
 			else if(type.compare("m")==0)
-				tabPecas.push_back(new Peca(j,i,type,'v'));
+				tabPecas.push_back(new Peca(j,i,type,'v',mapObjects));
 
-			}
+			
 			//}
 
 			//n-a-ki-1
@@ -291,4 +303,5 @@ void Tabuleiro::placePieces(){
 	}
 
 
+}
 }

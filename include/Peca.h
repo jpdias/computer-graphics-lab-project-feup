@@ -5,6 +5,7 @@
 #include "CGFscene.h"
 #include "ObjectCompost.h"
 #include "Object.h"
+#include <map>
 
 class Peca: public CGFobject {
 
@@ -15,7 +16,7 @@ class Peca: public CGFobject {
 		bool c,isCastle;
 		char team;
 		
-		Peca(int x,int y,string type,char team);
+		Peca(int x,int y,string type,char team,map<string,Object*> mapObjects);
 		void draw();
 		Object *piece;
 		ObjectCompost *pieceCompost;

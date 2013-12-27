@@ -7,8 +7,8 @@
 #include "CGFshader.h"
 #include "CGFaxis.h"
 #include "CGFapplication.h"
-
 #include "Peca.h"
+#include <map>
 
 #define NUM_ROWS 24
 #define NUM_COLS 24
@@ -34,6 +34,16 @@ class Tabuleiro: public CGFobject {
 //	Rectangle obj;
 	Rectangle cube;
 
+	Object *ark;
+Object 	*tower;
+	Object *seargent;
+	 Object *knight;
+	 Object *duke;
+	 Object *prince;
+	Object *squire;
+	Object *king;
+	Object *pike;
+	map<string,Object*> mapObjects;
 };
 
 #endif
