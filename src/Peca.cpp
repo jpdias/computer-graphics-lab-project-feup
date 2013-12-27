@@ -8,8 +8,7 @@ Peca::Peca(int y,int x,string type,char team,map<string,Object*> mapObjects){
 	isCastle=false;
 
 	
-	
-//	memcpy_s(piece,sizeof(mapObjects[type]),mapObjects[type],sizeof(mapObjects[type]));
+
 	piece = mapObjects[type];
 	if(type.compare("castle")==0)
 		isCastle=true;
