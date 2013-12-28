@@ -8,7 +8,8 @@
 #include "Tabuleiro.h"
 #include "Camera.h"
 #include "Clock.h"
-
+#include "LinearAnimation.h"
+#include "Animation.h"
 class DemoScene : public CGFscene
 {
 public:
@@ -22,7 +23,13 @@ public:
 	int wire,texttab,cams;
 	void toggleSomething();
 	Tabuleiro* tab;
-	unsigned long _time;
+	unsigned long _time,elapsed;
+	void movePiece(Peca *p,double endx,double endy);
+	void move();
+	bool moving;
+	Peca *peca_link;
+	double endx,endy,posy[5],posx[5],ppux,ppuy,timer;
+	int ctr;
 	Clock clock;
 	char turn;
 private:

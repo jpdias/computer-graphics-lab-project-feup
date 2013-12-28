@@ -59,15 +59,68 @@ void DemoScene::init()
 	tab=new Tabuleiro();
 	turn='a';
 	setUpdatePeriod(30);
+	elapsed=0;
+	_time=0;
+	moving=false;
+	ppux=0;
+	ppuy=0;
+	timer=0;
+	ctr=0;
 }
 
 
 void DemoScene::update(unsigned long t)
 {
+	long elapsedt = t - _time;
+	_time = t;
+	if(Animation::go){
+		Animation::dt = elapsedt/1000.0;
+		Animation::elapsed += elapsedt;
+	}
+	else{
+		Animation::dt = 0;
+		Animation::elapsed += 0;
+		_time = t;
+	}
 	/*shader->bind();
 	shader->update(t/400.0);
 	shader->unbind();*/
+}
+
+void DemoScene::movePiece(Peca *p,double endx,double endy){
+	vector<coordi> points;
+	coordi pt;
+
+	//55-5*x,0+h,-55+5*y
 	
+	pt.x=55-5*p->x;
+	pt.y=0;
+	pt.z=-55+5*p->y;
+
+	points.push_back(pt);
+	pt.y=5;
+	points.push_back(pt);
+	pt.x=55-5*endx;
+	pt.y=5;
+	pt.z=-55+5*endy;
+	points.push_back(pt);
+	pt.y=0;
+	points.push_back(pt);
+	p->ani=new LinearAnimation(points,1);
+	p->animation=true;
+}
+void DemoScene::move(){
+	timer+=elapsed;
+	if(timer > ctr*1000){
+		peca_link->setX(posx[ctr]);
+		peca_link->setY(posy[ctr]);
+		ctr++;
+	}
+	if(ctr==5){
+		moving=false;
+		ctr=0;
+		timer=0;
+	}
 }
 	
 void DemoScene::display() 

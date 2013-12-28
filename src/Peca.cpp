@@ -6,8 +6,9 @@ Peca::Peca(double num,double y,double x,string type,char team,map<string,Object*
 	this->type=type;
 	this->team=team;
 	isCastle=false;
+	animation=false;
 	this->num=num;
-	
+	h=0;
 
 	piece = mapObjects[type];
 	if(type.compare("castle")==0)
@@ -45,7 +46,17 @@ void Peca::draw(){
 	glPushMatrix();
 		glPushName(x);
 		glPushName(y);
-		glTranslated(55-5*x,0,-55+5*y);
+		if(!animation)
+			//glTranslated(55-5*x,0+h,-55+5*y);
+			glTranslated(55-5*x,0+h,-55+5*y);
+		else{
+			animation=ani->apply();
+			if(animation==false){
+				x=newx;
+				y=newy;
+			}
+			glTranslated(55-5*x,0+h,-55+5*y);
+		}
 		if(team=='a')
 				piece->draw(1);
 		else if(team=='b')

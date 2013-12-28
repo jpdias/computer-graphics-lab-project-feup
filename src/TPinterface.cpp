@@ -182,17 +182,23 @@ void TPinterface::processHits (GLint hits, GLuint buffer[])
 					int space,direction=getDirection(x,y,oldx,oldy,&space);
 					printf("\nDIR:%d|SPACE:%d\n",direction,space);
 					selec = false;
-					fill( begin( str_socket ), end( str_socket ), 0 );
+					/*fill( begin( str_socket ), end( str_socket ), 0 );
 					_snprintf(str_socket,128,"movepiece-%s-a-%d-%d-%d.",((DemoScene *) scene)->tab->jog1Pecas.at(sel)->type.c_str(),((DemoScene *) scene)->tab->jog1Pecas.at(sel)->num,direction,space);
 					strcat(str_socket,"\n");
 					envia(str_socket,strlen(str_socket));
 					fill( begin( str_socket ), end( str_socket ), 0 );
 					recebe(str_socket);
-					if(strcmp(str_socket,"true")==0){
-						((DemoScene *) scene)->tab->jog1Pecas.at(sel)->setX(x);
-						((DemoScene *) scene)->tab->jog1Pecas.at(sel)->setY(y);
+					if(strcmp(str_socket,"true")==0){*/
+						((DemoScene *) scene)->movePiece(((DemoScene *) scene)->tab->jog1Pecas.at(sel),x,y);
+						((DemoScene *) scene)->tab->jog1Pecas.at(sel)->newx=x;
+						((DemoScene *) scene)->tab->jog1Pecas.at(sel)->newy=y;
+						Animation::go=true;
+						//((DemoScene *) scene)->moving=true;
+						
+						//((DemoScene *) scene)->tab->jog1Pecas.at(sel)->setX(x);
+						//((DemoScene *) scene)->tab->jog1Pecas.at(sel)->setY(y);
 						//((DemoScene *) scene)->tab->move(((DemoScene *) scene)->tab->jog1Pecas.at(sel)->x,((DemoScene *) scene)->tab->jog1Pecas.at(sel)->y,x,y,((DemoScene *) scene)->tab->jog1Pecas.at(sel));
-					}
+					//}
 				}
 			}
 
