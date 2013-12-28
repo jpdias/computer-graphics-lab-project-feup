@@ -57,7 +57,9 @@ Tabuleiro::Tabuleiro(){
 	mapObjects["pi"] = pike;
 	mapObjects["m"] = new Object("data/peak.obj");
 	mapObjects["garden"] = new Object("data/tre.obj");
+	mapObjects["r"] = new Object("data/tre.obj");
 	mapObjects["castle"] = new Object("data/tower.obj");
+
 
 	cout << "Initiating Tab" << endl;
 	initTab();
@@ -290,9 +292,9 @@ void Tabuleiro::placePieces(){
 					else if(team.compare("b")==0)
 						jog2Pecas.push_back(new Peca(num,j,i,piece,team.at(0),mapObjects));
 			}
-			else if(type.compare("m")==0)
+			else if(type.compare("m")==0 || (type.compare("r")==0))
 				tabPecas.push_back(new Peca(0,j,i,type,'v',mapObjects));
-
+			
 			
 			//}
 

@@ -135,12 +135,13 @@ bool LinearAnimation::apply() {
 		}
 		
 		glTranslatef(animation.x,animation.y,animation.z);
+
 		flag=true;
 
 	}
 		return true;
 	
-	//glRotatef(angle,0.0,1.0,0.0);
+	
 	
 }
 
