@@ -47,7 +47,7 @@ void Peca::draw(){
 		glPushName(x);
 		glPushName(y);
 		if(!animation)
-			//glTranslated(55-5*x,0+h,-55+5*y);
+			
 			glTranslated(55-5*x,0+h,-55+5*y);
 		else{
 			animation=ani->apply();
