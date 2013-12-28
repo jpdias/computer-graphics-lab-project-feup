@@ -49,11 +49,32 @@ void TPinterface::initGUI()
 	addRadioButtonToGroup(group,"Standard");
 	addRadioButtonToGroup(group,"Rock");
 	addColumn();
+	turn = addPanel("Turn");
+	turn->set_name("Turn: Player A");
+	addButtonToPanel(turn,"End Turn",101);
+	
 	socketConnect();
 	//quit();
 }
 void TPinterface::processGUI(GLUI_Control *ctrl)
 {	
+	switch (ctrl->user_id)
+	{
+	case 101:
+			
+			 if(((DemoScene *) scene)->turn=='b'){
+				 ((DemoScene *) scene)->turn='a';
+				 turn->set_name("Turn: Player A");
+			 }
+			 else if(((DemoScene *) scene)->turn=='a'){
+				 ((DemoScene *) scene)->turn='b';
+				 turn->set_name("Turn: Player B");
+			 }
+			 printf("\nTurn:%c",((DemoScene *) scene)->turn);
+			 envia("changeturn.\n",strlen("changeturn.\n"));
+			break;
+		};
+
 	
 }
 
@@ -155,7 +176,7 @@ void TPinterface::processHits (GLint hits, GLuint buffer[])
 				y=selected[i];
 				printf("%d ",y);
 				if(!selec){
-				//if(((DemoScene *) scene)->turn=='a'){
+				if(((DemoScene *) scene)->turn=='a'){
 					size= ((DemoScene *) scene)->tab->jog1Pecas.size();
 					for(int j=0;j< size;j++){
 						if((((DemoScene *) scene)->tab->jog1Pecas.at(j)->x==x) && (((DemoScene *) scene)->tab->jog1Pecas.at(j)->y==y)){
@@ -168,14 +189,20 @@ void TPinterface::processHits (GLint hits, GLuint buffer[])
 						}
 					}
 
-				//}
-				//else if(((DemoScene *) scene)->turn=='b'){
+				}
+				else if(((DemoScene *) scene)->turn=='b'){
 					size= ((DemoScene *) scene)->tab->jog2Pecas.size();
 					for(int j=0;j< size;j++){
-						if((((DemoScene *) scene)->tab->jog2Pecas.at(j)->x==x) && (((DemoScene *) scene)->tab->jog1Pecas.at(j)->y==y))
+						if((((DemoScene *) scene)->tab->jog2Pecas.at(j)->x==x) && (((DemoScene *) scene)->tab->jog2Pecas.at(j)->y==y)){
 							printf(" Player B Piece");
+							selec = true;
+							sel = j;
+							oldx=x;
+							oldy=y;
+							player = 'b';
+						}
 					}
-				//}
+				}
 				}
 				else
 				{
@@ -183,16 +210,27 @@ void TPinterface::processHits (GLint hits, GLuint buffer[])
 					printf("\nDIR:%d|SPACE:%d\n",direction,space);
 					selec = false;
 					fill( begin( str_socket ), end( str_socket ), 0 );
-					_snprintf(str_socket,128,"movepiece-%s-a-%d-%d-%d.",((DemoScene *) scene)->tab->jog1Pecas.at(sel)->type.c_str(),((DemoScene *) scene)->tab->jog1Pecas.at(sel)->num,direction,space);
+					if(((DemoScene *) scene)->turn=='a')
+						_snprintf(str_socket,128,"movepiece-%s-%c-%d-%d-%d.",((DemoScene *) scene)->tab->jog1Pecas.at(sel)->type.c_str(),player,((DemoScene *) scene)->tab->jog1Pecas.at(sel)->num,direction,space);
+					else if(((DemoScene *) scene)->turn=='b')
+						_snprintf(str_socket,128,"movepiece-%s-%c-%d-%d-%d.",((DemoScene *) scene)->tab->jog2Pecas.at(sel)->type.c_str(),player,((DemoScene *) scene)->tab->jog2Pecas.at(sel)->num,direction,space);
 					strcat(str_socket,"\n");
 					envia(str_socket,strlen(str_socket));
 					fill( begin( str_socket ), end( str_socket ), 0 );
 					recebe(str_socket);
 					if(strcmp(str_socket,"true")==0){
-						((DemoScene *) scene)->movePiece(((DemoScene *) scene)->tab->jog1Pecas.at(sel),x,y);
-						((DemoScene *) scene)->tab->jog1Pecas.at(sel)->newx=x;
-						((DemoScene *) scene)->tab->jog1Pecas.at(sel)->newy=y;
-						Animation::go=true;
+						if(((DemoScene *) scene)->turn=='a'){
+							((DemoScene *) scene)->movePiece(((DemoScene *) scene)->tab->jog1Pecas.at(sel),x,y);
+							((DemoScene *) scene)->tab->jog1Pecas.at(sel)->newx=x;
+							((DemoScene *) scene)->tab->jog1Pecas.at(sel)->newy=y;
+							Animation::go=true;
+						}
+						else if(((DemoScene *) scene)->turn=='b'){
+							((DemoScene *) scene)->movePiece(((DemoScene *) scene)->tab->jog2Pecas.at(sel),x,y);
+							((DemoScene *) scene)->tab->jog2Pecas.at(sel)->newx=x;
+							((DemoScene *) scene)->tab->jog2Pecas.at(sel)->newy=y;
+							Animation::go=true;
+						}
 					}
 				}
 			}

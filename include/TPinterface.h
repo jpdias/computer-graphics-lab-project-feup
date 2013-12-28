@@ -25,6 +25,7 @@ class TPinterface: public CGFinterface {
 		void recebe(char *ans);
 		void quit();
 		int getDirection(int newx,int newy, int oldx, int oldy,int *space);
+		GLUI_Panel *turn;
 };
 
 
