@@ -6,7 +6,7 @@
 // buffer to be used to store the hits during picking
 #define BUFSIZE 256
 
-bool selec;
+bool selec,next_c;
 int sel,oldx,oldy;
 char player;
 using namespace std;
@@ -17,6 +17,7 @@ GLuint selectBuf[BUFSIZE];
 
 TPinterface::TPinterface()
 {
+	next_c=false;
 }
 
 
@@ -175,40 +176,54 @@ void TPinterface::processHits (GLint hits, GLuint buffer[])
 			else{
 				y=selected[i];
 				printf("%d ",y);
-				if(!selec){
-				if(((DemoScene *) scene)->turn=='a'){
+
+				if(((DemoScene *) scene)->turn=='a' || selec==true){
 					size= ((DemoScene *) scene)->tab->jog1Pecas.size();
 					for(int j=0;j< size;j++){
 						if((((DemoScene *) scene)->tab->jog1Pecas.at(j)->x==x) && (((DemoScene *) scene)->tab->jog1Pecas.at(j)->y==y)){
-							printf(" Player A Piece selected");
-							selec = true;
-							sel = j;
-							oldx=x;
-							oldy=y;
-							player = 'a';
+							if(!selec){
+								printf(" Player A Piece selected");
+								next_c = true;
+								sel = j;
+								oldx=x;
+								oldy=y;
+								player = 'a';
+							}
+							else
+							{
+									((DemoScene *) scene)->tab->jog1Pecas.erase((((DemoScene *) scene)->tab->jog1Pecas).begin()+j);
+									break;
+							}
 						}
 					}
 
 				}
-				else if(((DemoScene *) scene)->turn=='b'){
+				if(((DemoScene *) scene)->turn=='b' || selec==true){
 					size= ((DemoScene *) scene)->tab->jog2Pecas.size();
 					for(int j=0;j< size;j++){
 						if((((DemoScene *) scene)->tab->jog2Pecas.at(j)->x==x) && (((DemoScene *) scene)->tab->jog2Pecas.at(j)->y==y)){
-							printf(" Player B Piece");
-							selec = true;
-							sel = j;
-							oldx=x;
-							oldy=y;
-							player = 'b';
+							if(!selec){
+								printf(" Player B Piece");
+								next_c = true;
+								sel = j;
+								oldx=x;
+								oldy=y;
+								player = 'b';
+							}
+							else
+							{
+									((DemoScene *) scene)->tab->jog2Pecas.erase((((DemoScene *) scene)->tab->jog2Pecas).begin()+j);
+									break;
+							}
 						}
 					}
 				}
-				}
-				else
+				if(selec)
 				{
 					int space,direction=getDirection(x,y,oldx,oldy,&space);
 					printf("\nDIR:%d|SPACE:%d\n",direction,space);
 					selec = false;
+					next_c = false;
 					fill( begin( str_socket ), end( str_socket ), 0 );
 					if(((DemoScene *) scene)->turn=='a')
 						_snprintf(str_socket,128,"movepiece-%s-%c-%d-%d-%d.",((DemoScene *) scene)->tab->jog1Pecas.at(sel)->type.c_str(),player,((DemoScene *) scene)->tab->jog1Pecas.at(sel)->num,direction,space);
@@ -224,6 +239,11 @@ void TPinterface::processHits (GLint hits, GLuint buffer[])
 							((DemoScene *) scene)->tab->jog1Pecas.at(sel)->newx=x;
 							((DemoScene *) scene)->tab->jog1Pecas.at(sel)->newy=y;
 							Animation::go=true;
+							/*for(int j=0;j< size;j++){
+								if((((DemoScene *) scene)->tab->jog2Pecas.at(j)->x==x) && (((DemoScene *) scene)->tab->jog2Pecas.at(j)->y==y)){
+									((DemoScene *) scene)->tab->jog2Pecas.erase((((DemoScene *) scene)->tab->jog2Pecas).begin()+j-1);
+								}
+							}*/
 						}
 						else if(((DemoScene *) scene)->turn=='b'){
 							((DemoScene *) scene)->movePiece(((DemoScene *) scene)->tab->jog2Pecas.at(sel),x,y);
@@ -233,6 +253,9 @@ void TPinterface::processHits (GLint hits, GLuint buffer[])
 						}
 					}
 				}
+				if(next_c)
+					selec = true;
+
 			}
 
 		}
